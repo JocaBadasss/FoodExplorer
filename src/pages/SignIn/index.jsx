@@ -3,10 +3,11 @@ import { Link } from "react-router-dom"
 
 import { useAuth } from "../../hooks/auth"
 
-import { Container, ExplorerLogo, Form, Inputs } from "./styles"
+import { Container, Form, Inputs } from "./styles"
 
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
+import { Logo } from "../../components/Logo"
 export default function SignIn() {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
@@ -19,9 +20,12 @@ export default function SignIn() {
 
   return (
     <Container>
-      <div>
+      {/* <div>
         <ExplorerLogo />
-      </div>
+
+      </div> */}
+
+      <Logo />
       <Form>
         <h1>Faça login</h1>
         <Inputs>

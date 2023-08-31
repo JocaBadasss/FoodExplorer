@@ -8,7 +8,9 @@ import MasterRoutes from "./master.app.routes"
 import AppRoutes from "./app.routes"
 
 export default function Routes() {
-  const { user } = useAuth()
+  // const { user } = useAuth()
+
+  const user = { joao: "calors"}
 
   return (
     <BrowserRouter>
@@ -23,6 +25,8 @@ export default function Routes() {
       ) : (
         <AuthRoutes />
       )}
+
+      {/* <AuthRoutes/> */}
     </BrowserRouter>
   )
 }

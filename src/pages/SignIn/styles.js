@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import explorerLogo from "../../assets/ExplorerLogo.svg"
+// import explorerLogo from "../../assets/ExplorerLogo.svg"
 
 export const Container = styled.div`
   max-width: 42.8rem;
@@ -20,6 +20,7 @@ export const Container = styled.div`
 
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-size: 3.6rem;
+    
   }
 
   @media (min-width: 700px) {
@@ -36,11 +37,11 @@ export const Container = styled.div`
   }
 `
 
-export const ExplorerLogo = styled.svg`
-  background: url(${explorerLogo}) no-repeat center;
-  width: 27rem;
-  height: 4.3rem;
-`
+// export const ExplorerLogo = styled.svg`
+//   background: url(${explorerLogo}) no-repeat center;
+//   width: 27rem;
+//   height: 4.3rem;
+// `
 
 export const Form = styled.form`
   display: flex;
