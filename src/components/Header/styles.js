@@ -1,10 +1,29 @@
-import { styled } from "styled-components"
+import { styled, keyframes, css } from "styled-components"
+
+const MenuAnimation = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+
+`
+
+const MenuAnimationOut = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+`
 
 export const Container = styled.header`
   padding: 5.6rem 2.8rem 2.4rem;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 1.6rem;
 
   button {
@@ -32,6 +51,10 @@ export const Container = styled.header`
 
     padding: 2.4rem 12.3rem;
 
+    align-items: center;
+
+    gap: 3.6rem;
+
     button {
       background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
     }
@@ -43,7 +66,7 @@ export const Container = styled.header`
         display: contents;
 
         > svg {
-          width: 19.7rem;
+          width: 29em;
           height: 3rem;
         }
       }
@@ -57,10 +80,6 @@ export const Cart = styled.button`
 
     width: 3.2rem;
     height: 3.2rem;
-
-    p {
-      display: none;
-    }
 
     span {
       width: 2rem;
@@ -98,7 +117,13 @@ export const Cart = styled.button`
 
     > div {
       width: 100%;
-    
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 0.8rem;
+      }
+
       p {
         display: unset;
       }
@@ -127,8 +152,117 @@ export const Menu = styled.button`
   }
 `
 
-export const Search = styled.input`
+export const Search = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 1.4rem;
+
   width: 100%;
+  height: 4.8rem;
 
+  padding-left: clamp(1rem, -25.9474rem + 26.3158vw, 10rem);
 
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  border-radius: 0.5rem;
+  > input {
+    background-color: transparent;
+    border: none;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+    width: 100%;
+  }
+`
+
+export const MenuMobile = styled.section`
+  position: absolute;
+  display: ${({ $menuisopen }) => ($menuisopen ? "unset" : "none")};
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  background-color: ${({ theme }) => theme.COLORS.DARK_400};
+
+  animation: ${({ $menuisopen }) =>
+    $menuisopen
+      ? css`
+          ${MenuAnimation} 0.3s ease
+        `
+      : css`
+          ${MenuAnimationOut} 0.3s ease
+        `};
+
+  > header {
+    height: 11.2rem;
+
+    display: flex;
+    align-items: center;
+
+    padding: 5.6rem 2.8rem 2.4rem;
+
+    background-color: ${({ theme }) => theme.COLORS.DARK_700};
+
+    button {
+      display: flex;
+      align-items: center;
+
+      font-size: 2.2rem;
+    }
+  }
+
+  > div {
+    margin: 3.6rem 2.8rem 1.3rem;
+    height: 4.8rem;
+
+    button {
+      padding: 1rem;
+      text-align: left;
+
+      font-size: 2.4rem;
+      font-weight: 300;
+    }
+  }
+`
+export const Input = styled.div`
+  height: 4.8rem;
+
+  padding: 1.2rem 1.4rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+
+  border-radius: 0.5rem;
+
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+  margin-bottom: 3.6rem;
+
+  > input {
+    width: 100%;
+
+    background: transparent;
+
+    border: none;
+
+    ${({ theme }) => theme.FONTS.ROBOTO_SMALL_REGULAR};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+    &::placeholder {
+      color: ${({ theme }) => theme.COLORS.LIGHT_500};
+    }
+  }
+`
+export const SignOut = styled.button`
+  background-color: transparent !important;
+
+  @media (min-width: 1024px) {
+    display: unset;
+  }
 `

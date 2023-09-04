@@ -28,9 +28,12 @@ const AuthProvider = ({ children }) => {
     }
   }
 
-  const SignOut = () => {
-    localStorage.removeItem("@s:t")
-    setData({})
+  const signOut = () => {
+    const confirm = window.confirm("Tem certeza que deseja sair?")
+    if (confirm) {
+      localStorage.removeItem("@s:t")
+      setData({})
+    }
   }
 
   useEffect(() => {
@@ -50,7 +53,7 @@ const AuthProvider = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user: data.user, SignIn, SignOut }}>
+    <AuthContext.Provider value={{ user: data.user, SignIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )

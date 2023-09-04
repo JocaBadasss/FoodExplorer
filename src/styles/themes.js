@@ -44,5 +44,12 @@ export default {
       font-weight: 500;
       line-height: 2.4rem;
     `,
+
+    ROBOTO_SMALL_REGULAR: css`
+    font-family: "Roboto", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 100%;
+    `
   },
 }
