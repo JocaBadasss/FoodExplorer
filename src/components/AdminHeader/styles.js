@@ -30,6 +30,10 @@ export const Container = styled.header`
         height: 2.4rem;
       }
     }
+
+    span {
+      color: ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
+    }
   }
 
   @media (min-width: 1024px) {

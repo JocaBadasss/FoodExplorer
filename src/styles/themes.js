@@ -19,7 +19,8 @@ export default {
     DARK_800: "#0D161B",
     DARK_900: "#0D1D25",
     DARK_1000: "#192227",
-    GRADIENTS_200: "#04D361",
+    GRADIENTS_200:
+      "linear-gradient(to bottom, #091e26, #081b24, #051921, #03161e, #00131c);",
     TINTS_TOMATO_100: "#750310",
     TINTS_TOMATO_200: "#92000E",
     TINTS_TOMATO_300: "#AB222E",
@@ -31,25 +32,46 @@ export default {
   },
 
   FONTS: {
-    POPPINS_400: css`
-      font-family: "Poppins", sans-serif;
-      font-size: 3.2rem;
-      font-weight: 500;
-      line-height: 140%;
-    `,
-
-    POPPINS_100: css`
+    POPPINS_100_MEDIUM: css`
       font-family: "Poppins", sans-serif;
       font-size: 1.4rem;
       font-weight: 500;
       line-height: 2.4rem;
     `,
 
+    POPPINS_300_BOLD: css`
+      font-family: "Poppins", sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 140%;
+    `,
+
+    POPPINS_400_MEDIUM: css`
+      font-family: "Poppins", sans-serif;
+      font-size: 3.2rem;
+      font-weight: 500;
+      line-height: 140%;
+    `,
+
+    ROBOTO_SMALLER_REGULAR: css`
+      font-family: "Roboto", sans-serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 160%;
+    `,
+
     ROBOTO_SMALL_REGULAR: css`
-    font-family: "Roboto", sans-serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 100%;
-    `
+      font-family: "Roboto", sans-serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 100%;
+    `,
+
+    ROBOTO_BIGGEST_REGULAR: css`
+      font-family: "Roboto", sans-serif;
+      font-size: 3.2rem;
+      font-weight: 400;
+      line-height: 160%;
+    `,
   },
 }

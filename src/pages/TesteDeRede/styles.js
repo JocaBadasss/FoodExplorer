@@ -64,7 +64,7 @@ export const Form = styled.form`
     border-radius: 1.6rem;
 
     > h1 {
-      ${({ theme }) => theme.FONTS.POPPINS_400};
+      ${({ theme }) => theme.FONTS.POPPINS_400_MEDIUM};
       display: unset;
       text-align: center;
     }

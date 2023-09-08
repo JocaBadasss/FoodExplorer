@@ -20,7 +20,7 @@ import {
 } from "./styles"
 
 import { Logo } from "../Logo"
-export const Header = () => {
+export const AdminHeader = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const { signOut } = useAuth()
 
@@ -41,7 +41,7 @@ export const Header = () => {
         <div />
       </MenuBurger>
       <Link to={"/"}>
-        <Logo />
+        <Logo /> <span>admin</span>
       </Link>
 
       {WidthScreen < 1024 ? (
@@ -55,22 +55,6 @@ export const Header = () => {
           />
         </Search>
       )}
-
-      <Cart>
-        {WidthScreen < 1024 ? (
-          <div>
-            <PiReceiptBold size={28} />
-            <span>0</span>
-          </div>
-        ) : (
-          <div>
-            <PiReceiptBold size={30} />
-            <p>
-              Pedidos&nbsp;&#40;<span>0</span>&#41;
-            </p>
-          </div>
-        )}
-      </Cart>
 
       {WidthScreen < 1024 ? (
         <></>
