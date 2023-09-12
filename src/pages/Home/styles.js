@@ -24,127 +24,6 @@ export const Main = styled.main`
   }
 `
 
-export const Article = styled.article`
-  @media (min-width: 1024px) {
-  }
-
-  /* min-width: 37.7rem; */
-  min-width: 28.3rem;
-  /* width: 37.7rem; */
-  /* width: 28.3rem; */
-  height: 12rem;
-
-  margin: 4.4rem auto 6.2rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  position: relative;
-
-  background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
-
-  border-radius: 0.3rem;
-
-  font-family: "Poppins", sans-serif;
-
-  > hgroup {
-    padding-right: 2.1rem;
-
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
-
-    p {
-      width: 20.2rem;
-
-      font-size: 1.2rem;
-      align-items: flex-end;
-    }
-  }
-
-  > img {
-    /* position: absolute; */
-    /* left: -3rem;
-    top: -3rem;
-    transform: translate(-3rem, -1.5rem); */
-
-    /* width: 65.6rem; */
-
-    width: 19.1rem;
-    height: 14.9rem;
-    /* width: 14.3rem;
-    height: 11.2rem; */
-
-    /* background: url(${macarons}) no-repeat center; */
-    /* background-size: clamp(14rem, 12.3rem + 4.7222vw, 19.1rem); */
-
-    position: absolute;
-    top: -2.9rem;
-    left: -2.9rem;
-
-    /* top: -0.65rem;
-    left: -4.9rem; */
-  }
-`
-
-// export const Article = styled.article`
-//   /* max-width: 37.6rem; */
-//   height: 12rem;
-
-//   margin: 4.4rem auto 0;
-
-//   display: flex;
-//   align-items: center;
-//   justify-content: flex-end;
-
-//   position: relative;
-
-//   background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
-
-//   border-radius: 0.3rem;
-
-//   font-family: "Poppins", sans-serif;
-
-//   > div {
-//     width: 19.1rem;
-//     height: 14.9rem;
-
-//     background: url(${macarons}) no-repeat center;
-//     background-size: cover;
-
-//     position: absolute;
-//     top: -2.9rem;
-//     left: -2.5rem;
-//   }
-
-//   > hgroup {
-//     padding-right: 2.1rem;
-
-//     h1 {
-//       font-size: 1.8rem;
-//       font-weight: 600;
-//     }
-
-//     p {
-//       width: 20.2rem;
-
-//       font-size: 1.2rem;
-//       align-items: flex-end;
-//     }
-//   }
-
-//   > img {
-//     /* position: absolute; */
-//     left: -3rem;
-//     top: -3rem;
-//     transform: translate(-3rem, -1.5rem);
-
-//     /* width: 65.6rem; */
-//   }
-// `
-
 export const MealSection = styled.section`
   display: grid;
   grid-template-areas:
@@ -152,12 +31,7 @@ export const MealSection = styled.section`
     "content";
 
   margin-bottom: 2.4rem;
-
-  /* .buttonLeft {
-    width: 3.2rem;
-    height: 3.2rem;
-    background: red;
-  } */
+  position: relative;
 
   > h1 {
     grid-area: h1;
@@ -170,9 +44,71 @@ export const MealSection = styled.section`
     grid-area: content;
 
     display: flex;
-    gap: 1.6rem;
 
-    overflow-x: scroll;
+    overflow-x: hidden;
+  }
+
+  .swiper {
+    > .swiper-button-prev,
+    .swiper-button-next {
+      z-index: 9999999999999999;
+
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .swiper {
+      > .swiper-button-prev,
+      .swiper-button-next {
+        z-index: 9999999999999999;
+
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+        &:hover {
+          transform: scale(1.2, 1.2);
+        }
+      }
+
+      &::before {
+        content: "";
+
+        width: 32%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+
+        border-radius: 0.8rem;
+
+        background: linear-gradient(
+          to left,
+          hsla(200, 100%, 3%, 27.25%),
+          hsla(200, 100%, 3%, 100%)
+        );
+      }
+
+      &::after {
+        content: "";
+
+        width: clamp(27rem, 3rem + 31.25vw, 35rem);
+        height: 46.2rem;
+
+        position: absolute;
+        top: 0;
+        right: -3.6%;
+
+        z-index: 99999;
+
+        background: linear-gradient(
+          to right,
+          hsla(200, 100%, 3%, 27.25%),
+          hsla(200, 100%, 3%, 100%)
+        );
+      }
+    }
   }
 
   @media (min-width: 1024px) {
@@ -183,25 +119,67 @@ export const MealSection = styled.section`
       font-size: 3.2rem;
     }
 
-    > div {
+    > .Cards {
       gap: 2.7rem;
-      position: relative;
+    }
 
-      .buttonLeft {
-        position: fixed;
+    .swiper {
+      > .swiper-button-prev,
+      .swiper-button-next {
+        z-index: 9999999999999999;
 
-        width: 27.8rem;
-        height: 44.8rem;
-        /* background: linear-gradient(
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+        &:hover {
+          transform: scale(1.2, 1.2);
+        }
+      }
+
+      &::before {
+        content: "";
+
+        width: 29%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+
+        border-radius: 0.8rem;
+
+        background: linear-gradient(
+          to left,
+          hsla(200, 100%, 3%, 27.25%),
+          hsla(200, 100%, 3%, 100%)
+        );
+      }
+
+      &::after {
+        content: "";
+
+        width: ${({ $width }) =>
+          $width >= 1024 && $width <= 1365
+            ? "clamp(27rem, 3.0468rem + 23.3918vw, 35rem);"
+            : "23rem"};
+        height: 46.2rem;
+
+        position: absolute;
+        top: 0;
+        right: -3.6%;
+
+        z-index: 99999;
+
+        background: linear-gradient(
           to right,
           hsla(200, 100%, 3%, 27.25%),
           hsla(200, 100%, 3%, 100%)
-        ); */
-
-        z-index: 99999;
-        top: 0;
-        left: 0;
+        );
       }
+    }
+
+    .swiper-wrapper {
+      /* gap: 2.7rem; */
     }
   }
 `

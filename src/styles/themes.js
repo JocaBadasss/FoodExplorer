@@ -67,6 +67,13 @@ export default {
       line-height: 100%;
     `,
 
+    ROBOTO_BIG_BOLD: css`
+      font-family: "Roboto", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 160%;
+    `,
+
     ROBOTO_BIGGEST_REGULAR: css`
       font-family: "Roboto", sans-serif;
       font-size: 3.2rem;

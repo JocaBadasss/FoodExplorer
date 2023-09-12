@@ -13,15 +13,18 @@ export const Meals = ({ title }) => {
   return (
     <Container>
       <Card>
-        <button className="favorite">
-          <MdOutlineFavoriteBorder size={24} />
+        <button
+          role="button"
+          className="favorite"
+        >
+          <MdOutlineFavoriteBorder size={28} />
         </button>
         <img
           src={Dish}
           alt=""
         />
         <h1>Torradas de Parma &gt; </h1>
-        {Width < 1024 ? (
+        {Width < 768 ? (
           <></>
         ) : (
           <p>Presunto de parma e rúcula em um pão com fermentação natural.</p>
@@ -34,9 +37,7 @@ export const Meals = ({ title }) => {
             </button>
             <input
               type="number"
-              name=""
-              id=""
-              value="01"
+              defaultValue="01"
             />
             <button>
               <FiPlus size={24} />

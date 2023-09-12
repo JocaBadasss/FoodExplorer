@@ -36,21 +36,21 @@ const AuthProvider = ({ children }) => {
     }
   }
 
-  useEffect(() => {
-    ;(async () => {
-      const token = localStorage.getItem("@s:t")
+  // useEffect(() => {
+  //   ;(async () => {
+  //     const token = localStorage.getItem("@s:t")
 
-      if (token) {
-        api.defaults.headers.common["Authorization"] = `Bearer ${token}`
+  //     if (token) {
+  //       api.defaults.headers.common["Authorization"] = `Bearer ${token}`
 
-        const response = await api.get("/users")
+  //       const response = await api.get("/users")
 
-        const user = response.data
+  //       const user = response.data
 
-        setData({ token, user })
-      }
-    })()
-  }, [])
+  //       setData({ token, user })
+  //     }
+  //   })()
+  // }, [])
 
   return (
     <AuthContext.Provider value={{ user: data.user, SignIn, signOut }}>

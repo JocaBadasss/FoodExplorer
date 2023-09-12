@@ -1,13 +1,8 @@
 import { styled } from "styled-components"
 
-export const Container = styled.div`
-  /* margin: 0 auto; */
-`
+export const Container = styled.div``
 
 export const Card = styled.section`
-  width: 100%;
-  height: 100%;
-
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
 
   padding: 2.4rem;
@@ -16,6 +11,9 @@ export const Card = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 1.2rem;
+
+  border-radius: 0.8rem;
+  box-shadow: inset 0 0 0 1px ${({ theme }) => theme.COLORS.DARK_300};
 
   position: relative;
 
@@ -34,7 +32,9 @@ export const Card = styled.section`
   }
 
   > h1 {
+    text-align: center;
     ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM};
+    font-size: clamp(1.4rem, 1.0479rem + 0.939vw, 2.4rem);
   }
 
   > p {
@@ -93,10 +93,10 @@ export const Card = styled.section`
   }
 `
 export const IncludeContainer = styled.div`
-  width: 16.2rem;
+  width: 100%;
 
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 1.6rem;
@@ -110,14 +110,16 @@ export const IncludeContainer = styled.div`
     width: 10rem;
     height: 3.2rem;
 
-    margin: 0.8rem 0 0.8rem 0;
-
     display: flex;
     gap: 1.4rem;
 
     button {
       border: none;
       background: none;
+      display: flex;
+      align-items: center;
+
+      ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM};
     }
 
     input {
@@ -137,7 +139,6 @@ export const IncludeContainer = styled.div`
 
   @media (min-width: 1024px) {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     gap: 1.6rem;
 
@@ -166,6 +167,7 @@ export const IncludeContainer = styled.div`
         border: none;
 
         text-align: center;
+        ${({ theme }) => theme.FONTS.ROBOTO_BIG_BOLD};
 
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
