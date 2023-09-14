@@ -16,14 +16,15 @@ export const Container = styled.div`
 `
 export const Main = styled.main`
   grid-area: main;
+  display: grid;
+  gap: 6.2rem;
 
-  padding: 0 1.6rem 0 2.4rem;
+  padding: 0 0 0 2.4rem;
 
   @media (min-width: 1024px) {
     padding: 0 12.3rem 0 12.3rem;
   }
 `
-
 export const MealSection = styled.section`
   display: grid;
   grid-template-areas:
@@ -180,6 +181,88 @@ export const MealSection = styled.section`
 
     .swiper-wrapper {
       /* gap: 2.7rem; */
+    }
+  }
+`
+
+export const Banner = styled.div`
+  /* width: clamp(37.6rem, 3.7243rem + 79.1489vw, 112rem); */
+  height: clamp(12rem, 5.6255rem + 14.8936vw, 26rem);
+
+  position: relative;
+
+  margin: clamp(4.4rem, -1.0198rem + 12.7524vw, 16.4rem) 1.6rem 0 0;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  border-radius: 0.3rem;
+
+  background: linear-gradient(
+    to bottom,
+    hsla(198, 61%, 9%, 100%),
+    hsla(200, 100%, 5%, 100%)
+  );
+
+  > .container {
+    width: 15.3rem;
+    height: 12rem;
+    > img {
+      width: clamp(19.1rem, -3.451rem + 53.0612vw, 37.3rem);
+      height: clamp(14.9rem, 2.9251rem + 27.9787vw, 41.2rem);
+
+      position: absolute;
+      bottom: 0;
+      left: -7%;
+    }
+  }
+
+  > hgroup {
+    width: clamp(23rem, 14.3284rem + 20.4038vw, 42.2rem);
+    padding-top: 2rem;
+    padding-left: 0.2rem;
+    font-family: "Poppins", sans-serif;
+
+    h1 {
+      font-size: clamp(1.8rem, 0.8788rem + 2.1675vw, 4rem);
+      line-height: 140%;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (min-width: 1366px) {
+    width: auto;
+    justify-content: flex-start;
+
+    margin-top: 16.4rem;
+
+    .container {
+      width: 57.8rem;
+      height: 26rem;
+
+      > img {
+        width: unset;
+        height: unset;
+        left: -4.5%;
+      }
+    }
+
+    > hgroup {
+      width: unset;
+      padding: unset;
+
+      h1 {
+        ${({ theme }) => theme.FONTS.POPPINS_500_MEDIUM};
+      }
+
+      p {
+        ${({ theme }) => theme.FONTS.ROBOTO_SMALL_REGULAR};
+      }
     }
   }
 `

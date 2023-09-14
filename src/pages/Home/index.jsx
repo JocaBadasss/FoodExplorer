@@ -7,15 +7,15 @@ import { Swiper, SwiperSlide } from "swiper/react"
 
 import UseWidth from "../../hooks/useResize"
 
-import { MdArrowBackIosNew } from "react-icons/md"
-import { MdArrowForwardIos } from "react-icons/md"
+import macaronsSmall from "../../assets/macaronsSmall.png"
+import macaronsBig from "../../assets/macaronsBig.png"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
 import { Meals } from "../../components/Meals"
 
-import { Container, Main, MealSection } from "./styles"
+import { Container, Main, MealSection, Banner } from "./styles"
 
 register()
 
@@ -28,6 +28,15 @@ export default function Home() {
     <Container $width={Width}>
       <Header />
       <Main>
+        <Banner $width={Width}>
+          <div className="container">
+            <img src={Width < 428 ? macaronsSmall : macaronsBig} />
+          </div>
+          <hgroup>
+            <h1>Sabores inigualáveis</h1>
+            <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+          </hgroup>
+        </Banner>
         <MealSection $width={Width}>
           <h1>Refeições</h1>
 
