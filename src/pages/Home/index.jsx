@@ -24,6 +24,15 @@ export default function Home() {
 
   const Width = UseWidth()
 
+  const data = [
+    {
+      id: 1,
+      name: "Macarrão",
+      image: macaronsSmall,
+      price: 25.97,
+    },
+  ]
+
   return (
     <Container $width={Width}>
       <Header />
