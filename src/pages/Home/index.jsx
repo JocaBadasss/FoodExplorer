@@ -14,24 +14,214 @@ import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
 import { Meals } from "../../components/Meals"
+import { MealsSection } from "../../components/MealsSection"
 
-import { Container, Main, MealSection, Banner } from "./styles"
+import { Container, Main, Banner, MealSection } from "./styles"
+import { api } from "../../services/api"
 
 register()
 
 export default function Home() {
+  const [data, setData] = useState([])
   const [navigation, setNavigation] = useState(true)
 
   const Width = UseWidth()
 
-  const data = [
-    {
-      id: 1,
-      name: "Macarrão",
-      image: macaronsSmall,
-      price: 25.97,
-    },
-  ]
+  // const data = [
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Sobremesas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Sobremesas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pieeeeeeee",
+  //     category: "Refeições",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Refeições",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Bebidas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  // ]
+
+  // const data = [
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Sobremesas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Sobremesas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pieeeeeeee",
+  //     category: "Refeições",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Refeições",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Bebidas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Sobremesas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Sobremesas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pieeeeeeee",
+  //     category: "Refeições",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Refeições",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Bebidas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Sobremesas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Sobremesas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pieeeeeeee",
+  //     category: "Refeições",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Refeições",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Prugna Pie",
+  //     category: "Bebidas",
+  //     description: "Torta de ameixa com massa amanteigada, polvilho em açúcar.",
+  //     price: 79.97,
+  //     tags: ["arroz", "frango", "salada"],
+  //     image: "45aca4207b6208d0ee49-name=macaron, size=400.png",
+  //   },
+  // ]
+
+  useEffect(() => {
+    async function getData() {
+      const response = await api.get("/dishes")
+      const data = response.data
+
+      setData(data)
+    }
+    getData()
+  })
 
   return (
     <Container $width={Width}>
@@ -46,182 +236,45 @@ export default function Home() {
             <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
           </hgroup>
         </Banner>
-        <MealSection $width={Width}>
-          <h1>Refeições</h1>
 
-          <div className="Cards">
-            <Swiper
-              slidesPerView={3.5}
-              navigation={Width < 768 ? false : true}
-              loop={true}
-              spaceBetween={27}
-              breakpoints={{
-                320: {
-                  slidesPerView: 1.2,
-                  centeredSlides: true,
-                  spaceBetween: 8,
-                },
-                360: {
-                  slidesPerView: 1.6,
-                  centeredSlides: true,
-                  spaceBetween: 8,
-                },
-                410: {
-                  slidesPerView: 1.78,
-                  centeredSlides: true,
-                  spaceBetween: 16,
-                },
-                480: {
-                  slidesPerView: 2,
-                  centeredSlides: true,
-                  spaceBetween: 18,
-                },
-                560: {
-                  slidesPerView: 2.3,
-                  centeredSlides: true,
-                  spaceBetween: 18,
-                },
-                640: {
-                  slidesPerView: 2.6,
-                  centeredSlides: true,
-                  spaceBetween: 18,
-                },
-                768: {
-                  slidesPerView: 2.78,
-                  centeredSlides: true,
+        <MealsSection
+          $width={Width}
+          title={"Refeições"}
+        >
+          {data
+            .filter((meal) => meal.category === "Refeições")
+            .map((meal) => (
+              <SwiperSlide key={meal.id}>
+                <Meals data={meal} />
+              </SwiperSlide>
+            ))}
+        </MealsSection>
 
-                  spaceBetween: 20,
-                },
-                1024: {
-                  slidesPerView: 2.8,
-                  spaceBetween: 27,
-                  centeredSlides: false,
-                },
-                1366: {
-                  slidesPerView: 3.5,
-                  spaceBetween: 27,
-                  centeredSlides: false,
-                },
-              }}
-            >
-              <SwiperSlide>
-                <Meals />
+        <MealsSection
+          $width={Width}
+          title={"Sobremesas"}
+        >
+          {data
+            .filter((meal) => meal.category === "Sobremesas")
+            .map((meal) => (
+              <SwiperSlide key={meal.id}>
+                <Meals data={meal} />
               </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-            </Swiper>
-          </div>
-        </MealSection>
-        <MealSection $width={Width}>
-          <h1>Refeições</h1>
+            ))}
+        </MealsSection>
 
-          <div className="Cards">
-            <Swiper
-              slidesPerView={3.5}
-              navigation={Width < 768 ? false : true}
-              loop={true}
-              spaceBetween={27}
-              breakpoints={{
-                320: {
-                  slidesPerView: 1.2,
-                  centeredSlides: true,
-                  spaceBetween: 8,
-                },
-                360: {
-                  slidesPerView: 1.6,
-                  centeredSlides: true,
-                  spaceBetween: 8,
-                },
-                410: {
-                  slidesPerView: 1.78,
-                  centeredSlides: true,
-                  spaceBetween: 16,
-                },
-                480: {
-                  slidesPerView: 2,
-                  centeredSlides: true,
-                  spaceBetween: 18,
-                },
-                560: {
-                  slidesPerView: 2.3,
-                  centeredSlides: true,
-                  spaceBetween: 18,
-                },
-                640: {
-                  slidesPerView: 2.6,
-                  centeredSlides: true,
-                  spaceBetween: 18,
-                },
-                768: {
-                  slidesPerView: 2.78,
-                  centeredSlides: true,
-
-                  spaceBetween: 20,
-                },
-                1024: {
-                  slidesPerView: 2.8,
-                  spaceBetween: 27,
-                  centeredSlides: false,
-                },
-                1366: {
-                  slidesPerView: 3.5,
-                  spaceBetween: 27,
-                  centeredSlides: false,
-                },
-              }}
-            >
-              <SwiperSlide>
-                <Meals />
+        <MealsSection
+          $width={Width}
+          title={"Bebidas"}
+        >
+          {data
+            .filter((meal) => meal.category === "Bebidas")
+            .map((meal) => (
+              <SwiperSlide key={meal.id}>
+                <Meals data={meal} />
               </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Meals />
-              </SwiperSlide>
-            </Swiper>
-          </div>
-        </MealSection>
+            ))}
+        </MealsSection>
       </Main>
       <Footer />
     </Container>

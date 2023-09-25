@@ -3,6 +3,8 @@ import { styled } from "styled-components"
 export const Container = styled.div``
 
 export const Card = styled.section`
+  max-width: clamp(21rem, 16.7635rem + 9.9682vw, 30.4rem);
+
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
 
   padding: 2.4rem;

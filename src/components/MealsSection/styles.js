@@ -1,3 +1,5 @@
+import styled from "styled-components"
+
 export const Container = styled.section`
   display: grid;
   grid-template-areas:
@@ -14,10 +16,10 @@ export const Container = styled.section`
     font-size: 1.8rem;
   }
 
-  > div {
+  > .Cards {
     grid-area: content;
 
-    display: flex;
+    /* display: flex; */
 
     overflow-x: hidden;
   }
