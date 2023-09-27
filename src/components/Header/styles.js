@@ -201,7 +201,6 @@ export const Search = styled.div`
 
 export const MenuMobile = styled.section`
   position: absolute;
-  /* display: ${({ $menuisopen }) => ($menuisopen ? "unset" : "none")}; */
 
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
@@ -239,12 +238,16 @@ export const MenuMobile = styled.section`
     margin: 3.6rem 2.8rem 1.3rem;
     height: 4.8rem;
 
+    display: flex;
+    flex-direction: column;
+
     button {
       padding: 1rem;
       text-align: left;
 
       font-size: 2.4rem;
       font-weight: 300;
+      box-shadow: inset 0 -1px 0 ${({ theme }) => theme.COLORS.DARK_1000};
     }
   }
 `
@@ -284,4 +287,12 @@ export const SignOut = styled.button`
   @media (min-width: 1024px) {
     display: unset;
   }
+`
+export const HeaderButton = styled.button`
+  white-space: nowrap;
+
+  background: none !important;
+
+  ${({ theme }) => theme.FONTS.ROBOTO_SMALL_REGULAR};
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
 `

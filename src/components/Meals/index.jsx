@@ -1,6 +1,7 @@
-import { MdOutlineFavoriteBorder } from "react-icons/md"
-import { FiMinus, FiPlus } from "react-icons/fi"
+import { useState } from "react"
 
+import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md"
+import { FiMinus, FiPlus } from "react-icons/fi"
 
 import { Button } from "../Button"
 
@@ -11,12 +12,25 @@ import { api } from "../../services/api"
 export const Meals = ({ data }) => {
   const Width = UseWidthHook()
 
+  const handleFavorite = (mealId) => {
+    console.log(mealId)
+
+    try {
+      api.post(`favorites/${mealId}`)
+    } catch (error) {
+      console.log(error)
+    }
+
+    
+  }
+
   return (
     <Container>
       <Card>
         <button
           role="button"
           className="favorite"
+          onClick={() => handleFavorite(data.id)}
         >
           <MdOutlineFavoriteBorder size={28} />
         </button>

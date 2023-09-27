@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { PiReceiptBold } from "react-icons/pi"
 import { PiSignOut } from "react-icons/pi"
@@ -17,6 +17,7 @@ import {
   MenuMobile,
   Input,
   SignOut,
+  HeaderButton,
 } from "./styles"
 
 import { Logo } from "../Logo"
@@ -29,6 +30,8 @@ export const Header = () => {
   const handleSignOut = () => {
     signOut()
   }
+
+  const navigate = useNavigate()
 
   return (
     <Container>
@@ -54,6 +57,14 @@ export const Header = () => {
             placeholder="Busque por pratos ou ingredientes"
           />
         </Search>
+      )}
+
+      {WidthScreen < 1024 ? (
+        <></>
+      ) : (
+        <HeaderButton onClick={() => navigate("/favorites")}>
+          Meus favoritos
+        </HeaderButton>
       )}
 
       <Cart>
@@ -85,7 +96,7 @@ export const Header = () => {
           <p>Menu</p>
         </header>
 
-        <div>
+        <div className="menu-options">
           <Input>
             <AiOutlineSearch size={24} />
             <input
@@ -94,6 +105,7 @@ export const Header = () => {
             />
           </Input>
 
+          <button onClick={() => navigate("/favorites")}>Meus favoritos</button>
           <button onClick={handleSignOut}>Sair</button>
         </div>
       </MenuMobile>

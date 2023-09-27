@@ -38,6 +38,12 @@ export default {
       font-weight: 500;
       line-height: 2.4rem;
     `,
+    POPPINS_200_MEDIUM: css`
+      font-family: "Poppins", sans-serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 160%;
+    `,
 
     POPPINS_300_BOLD: css`
       font-family: "Poppins", sans-serif;
@@ -72,6 +78,12 @@ export default {
       font-size: 1.6rem;
       font-weight: 400;
       line-height: 100%;
+    `,
+    ROBOTO_SMALLEST_REGULAR: css`
+      font-family: "Roboto", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 160%;
     `,
 
     ROBOTO_BIG_BOLD: css`
