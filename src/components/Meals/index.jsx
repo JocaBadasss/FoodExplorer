@@ -1,4 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+import UseWidthHook from "../../hooks/useResize"
+import { useFavorites } from "../../hooks/favorites"
+
+import { api } from "../../services/api"
 
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md"
 import { FiMinus, FiPlus } from "react-icons/fi"
@@ -7,22 +12,29 @@ import { Button } from "../Button"
 
 import { Container, Card, IncludeContainer } from "./styles"
 
-import UseWidthHook from "../../hooks/useResize"
-import { api } from "../../services/api"
 export const Meals = ({ data }) => {
+  const [favorite, setFavorite] = useState(false)
+  const [favorites, setFavorites] = useState([])
+
+  const { addOrRemoveFavorite, checkFavorite } = useFavorites()
+
   const Width = UseWidthHook()
 
-  const handleFavorite = (mealId) => {
-    console.log(mealId)
+  const handleAddFavorite = (mealId) => {
+    addOrRemoveFavorite(mealId)
+    setFavorite(!favorite)
+  }
 
-    try {
-      api.post(`favorites/${mealId}`)
-    } catch (error) {
-      console.log(error)
+  useEffect(() => {
+    const favoriteMeal = async () => {
+      const response = await checkFavorite(data.id)
+      const isFavorited = response.length > 0
+
+      setFavorite(isFavorited)
     }
 
-    
-  }
+    favoriteMeal()
+  }, [favorite])
 
   return (
     <Container>
@@ -30,9 +42,13 @@ export const Meals = ({ data }) => {
         <button
           role="button"
           className="favorite"
-          onClick={() => handleFavorite(data.id)}
+          onClick={() => handleAddFavorite(data.id)}
         >
-          <MdOutlineFavoriteBorder size={28} />
+          {favorite ? (
+            <MdFavorite size={28} />
+          ) : (
+            <MdOutlineFavoriteBorder size={28} />
+          )}
         </button>
         <img
           src={`${api.defaults.baseURL}/files/${data.image}`}

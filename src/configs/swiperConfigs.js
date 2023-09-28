@@ -3,12 +3,11 @@ const swiperConfigs = (Width) => ({
   navigation: Width < 1024 ? false : true,
   spaceBetween: 27,
   updateOnWindowResize: true,
-  rewind: true,
-  centerInsufficientSlides: true,
+  centerInsufficientSlides: false,
 
   // slideToClickedSlide: true,
 
-  slidesOffsetAfter: 110,
+  // slidesOffsetAfter: 110,
   breakpoints: {
     320: {
       slidesPerView: 1.7,
@@ -67,7 +66,8 @@ const swiperConfigs = (Width) => ({
       slidesPerView: 3.5,
       spaceBetween: 27,
       centeredSlides: false,
-      slidesOffsetAfter: 200,
+      centerInsufficientSlides: false,
+      // slidesOffsetAfter: 200,
     },
     1900: {
       slidesPerView: 4.5,

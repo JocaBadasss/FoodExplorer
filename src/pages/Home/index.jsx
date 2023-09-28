@@ -36,6 +36,8 @@ export default function Home() {
     getData()
   })
 
+
+
   return (
     <Container $width={Width}>
       <Header />

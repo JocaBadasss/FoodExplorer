@@ -90,6 +90,8 @@ export const MealSection = styled.section`
           hsla(200, 100%, 3%, 27.25%),
           hsla(200, 100%, 3%, 100%)
         );
+
+        pointer-events: none;
       }
 
       &::after {
@@ -109,6 +111,7 @@ export const MealSection = styled.section`
           hsla(200, 100%, 3%, 27.25%),
           hsla(200, 100%, 3%, 100%)
         );
+        pointer-events: none;
       }
     }
   }

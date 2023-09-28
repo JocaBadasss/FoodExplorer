@@ -1,15 +1,16 @@
+import { api } from "../../services/api"
+
 import { Container } from "./styles"
-import ravanello from "../../assets/ravanello.png"
 
 export const FavoriteMeals = ({ data }) => {
   return (
     <Container>
       <img
-        src={ravanello}
-        alt="Imagem de um prato com ravanello"
+        src={`${api.defaults.baseURL}/files/${data.image}`}
+        alt={`Imagem de um prato com ${data.name}`}
       />
-      <div >
-        <h1>Salada ravanello</h1>
+      <div>
+        <h1>{data.name}</h1>
         <button>Remover dos favoritos</button>
       </div>
     </Container>

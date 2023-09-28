@@ -25,4 +25,8 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
     }
   }
+
+  @media (min-width: 514px) {
+    width: 28rem;
+  }
 `
