@@ -8,6 +8,8 @@ export const Card = styled.section`
 
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
 
+  position: relative;
+
   padding: 2.4rem;
 
   display: flex;

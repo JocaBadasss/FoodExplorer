@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import { styled, css } from "styled-components"
 
 export const Container = styled.section`
   display: grid;
@@ -55,7 +55,7 @@ export const Container = styled.section`
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 99999;
+        z-index: 2;
 
         border-radius: 0.8rem;
 
@@ -76,7 +76,7 @@ export const Container = styled.section`
         top: 0;
         right: -3.6%;
 
-        z-index: 99999;
+        z-index: 2;
 
         background: linear-gradient(
           to right,
@@ -100,6 +100,13 @@ export const Container = styled.section`
     }
 
     .swiper {
+      .swiper-wrapper {
+        &:hover {
+          position: relative;
+          z-index: 99999;
+        }
+      }
+
       > .swiper-button-prev,
       .swiper-button-next {
         z-index: 9999999999999999;
@@ -112,45 +119,84 @@ export const Container = styled.section`
       }
 
       &::before {
-        content: "";
+        pointer-events: none;
+        ${({ $islastslide }) =>
+          $islastslide
+            ? css`
+                content: "";
 
-        width: 29%;
-        height: 100%;
+                width: 16%;
+                height: 100%;
 
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 99999;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 2;
 
-        border-radius: 0.8rem;
+                border-radius: 0.8rem;
 
-        background: linear-gradient(
-          to left,
-          hsla(200, 100%, 3%, 27.25%),
-          hsla(200, 100%, 3%, 100%)
-        );
+                background: linear-gradient(
+                  to left,
+                  hsla(200, 100%, 3%, 27.25%),
+                  hsla(200, 100%, 3%, 100%)
+                );
+              `
+            : css`
+                content: "";
+
+                width: 29%;
+                height: 100%;
+
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 2;
+
+                border-radius: 0.8rem;
+
+                background: linear-gradient(
+                  to left,
+                  hsla(200, 100%, 3%, 27.25%),
+                  hsla(200, 100%, 3%, 100%)
+                );
+              `}
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       &::after {
-        content: "";
-
-        width: ${({ $width }) =>
-          $width >= 1024 && $width <= 1365
-            ? "clamp(27rem, 3.0468rem + 23.3918vw, 35rem);"
-            : "23rem"};
-        height: 46.2rem;
-
-        position: absolute;
-        top: 0;
-        right: -3.6%;
-
-        z-index: 99999;
-
-        background: linear-gradient(
-          to right,
-          hsla(200, 100%, 3%, 27.25%),
-          hsla(200, 100%, 3%, 100%)
-        );
+        ${({ $islastslide }) =>
+          $islastslide
+            ? css`
+                content: "";
+                width: 29%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 2;
+                background: linear-gradient(
+                  to right,
+                  hsla(200, 100%, 3%, 27.25%),
+                  hsla(200, 100%, 3%, 100%)
+                );
+              `
+            : css`
+                content: "";
+                width: 16%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 2;
+                background: linear-gradient(
+                  to right,
+                  hsla(200, 100%, 3%, 27.25%),
+                  hsla(200, 100%, 3%, 100%)
+                );
+              `}
       }
     }
 

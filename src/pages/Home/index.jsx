@@ -16,7 +16,7 @@ import { Footer } from "../../components/Footer"
 import { Meals } from "../../components/Meals"
 import { MealsSection } from "../../components/MealsSection"
 
-import { Container, Main, Banner, MealSection } from "./styles"
+import { Container, Main, Banner } from "./styles"
 import { api } from "../../services/api"
 
 register()
@@ -35,8 +35,6 @@ export default function Home() {
     }
     getData()
   })
-
-
 
   return (
     <Container $width={Width}>
