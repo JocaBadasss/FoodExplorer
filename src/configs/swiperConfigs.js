@@ -3,7 +3,7 @@ const swiperConfigs = (Width) => ({
   navigation: Width < 1024 ? false : true,
   spaceBetween: 27,
   // updateOnWindowResize: true,
-  loop: true,
+  // loop: true,
 
   breakpoints: {
     320: {
@@ -62,6 +62,7 @@ const swiperConfigs = (Width) => ({
     1366: {
       slidesPerView: 3.5,
       spaceBetween: 27,
+      allowTouchMove: false,
     },
     1900: {
       slidesPerView: 4.5,

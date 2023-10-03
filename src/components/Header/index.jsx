@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 import { PiReceiptBold } from "react-icons/pi"
@@ -23,6 +23,8 @@ import {
 import { Logo } from "../Logo"
 export const Header = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
+  const [cartQuantity, setCartQuantity] = useState(0)
+
   const { signOut } = useAuth()
 
   const WidthScreen = UseWidthHook()
@@ -32,6 +34,16 @@ export const Header = () => {
   }
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const getCart = JSON.parse(sessionStorage.getItem("cart")) || []
+
+    const cartQuantity = getCart.reduce((acc, dish) => {
+      return acc + dish.quantity
+    }, 0)
+
+    setCartQuantity(cartQuantity)
+  })
 
   return (
     <Container>
@@ -69,15 +81,15 @@ export const Header = () => {
 
       <Cart>
         {WidthScreen < 1024 ? (
-          <div>
+          <div onClick={() => navigate("/checkout")}>
             <PiReceiptBold size={28} />
-            <span>0</span>
+            <span>{cartQuantity}</span>
           </div>
         ) : (
           <div>
             <PiReceiptBold size={30} />
             <p>
-              Pedidos&nbsp;&#40;<span>0</span>&#41;
+              Pedidos&nbsp;&#40;<span>{cartQuantity}</span>&#41;
             </p>
           </div>
         )}

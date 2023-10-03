@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import UseWidthHook from "../../hooks/useResize"
 import { useFavorites } from "../../hooks/favorites"
@@ -14,15 +15,49 @@ import { Container, Card, IncludeContainer } from "./styles"
 
 export const Meals = ({ data }) => {
   const [favorite, setFavorite] = useState(false)
-  const [favorites, setFavorites] = useState([])
+  const [quantity, setQuantity] = useState(1)
 
   const { addOrRemoveFavorite, checkFavorite } = useFavorites()
 
   const Width = UseWidthHook()
+  const navigate = useNavigate()
 
-  const handleAddFavorite = (mealId) => {
-    addOrRemoveFavorite(mealId)
+  const handleAddFavorite = (dishId) => {
+    addOrRemoveFavorite(dishId)
     setFavorite(!favorite)
+  }
+  const handlePlus = () => {
+    setQuantity(quantity + 1)
+  }
+  const handleMinus = () => {
+    if (quantity === 1) return
+    setQuantity(quantity - 1)
+  }
+
+  const handleIncludeDishToCart = () => {
+    const existingCart = JSON.parse(sessionStorage.getItem("cart")) || []
+
+    const existingDishIndex = existingCart.findIndex(
+      (cart) => cart.id === data.id
+    )
+
+    if (existingDishIndex >= 0) {
+      existingCart[existingDishIndex].quantity += quantity
+    } else {
+      existingCart.push({
+        id: data.id,
+        name: data.name,
+        price: data.price,
+        quantity: quantity,
+      })
+    }
+    sessionStorage.setItem("cart", JSON.stringify(existingCart))
+
+    setQuantity(1)
+  }
+
+  const handleDetails = (dishId) => {
+    navigate(`/details/${dishId}`)
   }
 
   useEffect(() => {
@@ -54,23 +89,33 @@ export const Meals = ({ data }) => {
           src={`${api.defaults.baseURL}/files/${data.image}`}
           alt={`Imagem de um prato com ${data.name}`}
         />
-        <h1> {data.name} &gt; </h1>
+        <button
+          role="button"
+          className="button-title"
+          onClick={() => handleDetails(data.id)}
+        >
+          <h1> {data.name} &gt; </h1>
+        </button>
         {Width < 768 ? <></> : <p>{data.description}</p>}
         <span>R$ {data.price}</span>
         <IncludeContainer>
           <div>
-            <button>
+            <button onClick={handleMinus}>
               <FiMinus size={24} />
             </button>
             <input
               type="number"
-              defaultValue="01"
+              onChange={(e) => setQuantity(e.target.value)}
+              value={quantity}
             />
-            <button>
+            <button onClick={handlePlus}>
               <FiPlus size={24} />
             </button>
           </div>
-          <Button title="Incluir" />
+          <Button
+            title="Incluir"
+            onClick={() => handleIncludeDishToCart()}
+          />
         </IncludeContainer>
       </Card>
     </Container>

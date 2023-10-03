@@ -44,6 +44,12 @@ export default {
       font-weight: 500;
       line-height: 160%;
     `,
+    POPPINS_300_REGULAR: css`
+      font-family: "Poppins", sans-serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: 140%;
+    `,
 
     POPPINS_300_BOLD: css`
       font-family: "Poppins", sans-serif;

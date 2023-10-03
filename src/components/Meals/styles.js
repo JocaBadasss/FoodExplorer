@@ -35,10 +35,8 @@ export const Card = styled.section`
     height: 8.8rem;
   }
 
-  > h1 {
-    text-align: center;
-    ${({ theme }) => theme.FONTS.POPPINS_100_MEDIUM};
-    font-size: clamp(1.4rem, 1.0479rem + 0.939vw, 2.4rem);
+  .button-title {
+    display: contents;
   }
 
   > p {
@@ -81,9 +79,12 @@ export const Card = styled.section`
       height: 17.6rem;
     }
 
-    > h1 {
-      ${({ theme }) => theme.FONTS.POPPINS_300_BOLD};
-      width: 25.5rem;
+    .button-title {
+      display: contents;
+      > h1 {
+        ${({ theme }) => theme.FONTS.POPPINS_300_BOLD};
+        width: 25.5rem;
+      }
     }
 
     > p {
