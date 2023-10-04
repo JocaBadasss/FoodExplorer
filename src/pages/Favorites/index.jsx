@@ -5,7 +5,7 @@ import { api } from "../../services/api"
 import UseWidth from "../../hooks/useResize"
 
 import { Header } from "../../components/Header"
-import { FavoriteMeals } from "../../components/FavoriteMeals"
+import { FavoriteDishs } from "../../components/FavoriteDishs"
 
 import { Container } from "./styles"
 export default function Favorites() {
@@ -31,10 +31,10 @@ export default function Favorites() {
         <h1>Meus favoritos</h1>
         <div>
           {data &&
-            data.map((meal) => (
-              <FavoriteMeals
-                key={meal.id}
-                data={meal}
+            data.map((dish) => (
+              <FavoriteDishs
+                key={dish.id}
+                data={dish}
               />
             ))}
         </div>

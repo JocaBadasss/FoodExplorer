@@ -2,7 +2,7 @@ import { api } from "../../services/api"
 
 import { Container } from "./styles"
 
-export const FavoriteMeals = ({ data }) => {
+export const FavoriteDishs = ({ data }) => {
   return (
     <Container>
       <img

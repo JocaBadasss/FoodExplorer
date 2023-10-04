@@ -13,8 +13,8 @@ import macaronsBig from "../../assets/macaronsBig.png"
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
 
-import { Meals } from "../../components/Meals"
-import { MealsSection } from "../../components/MealsSection"
+import { Dishs } from "../../components/Dishs"
+import { DishsSection } from "../../components/DishsSection"
 
 import { Container, Main, Banner } from "./styles"
 import { api } from "../../services/api"
@@ -34,7 +34,7 @@ export default function Home() {
       setData(data)
     }
     getData()
-  })
+  }, [])
 
   return (
     <Container $width={Width}>
@@ -50,47 +50,47 @@ export default function Home() {
           </hgroup>
         </Banner>
 
-        <MealsSection
+        <DishsSection
           $width={Width}
           title={"Refeições"}
         >
           {data
-            .filter((meal) => meal.category === "Refeições")
-            .map((meal) => (
-              <SwiperSlide key={meal.id}>
-                <Meals
-                  data={meal}
-                  key={meal.id}
+            .filter((dish) => dish.category === "Refeições")
+            .map((dish) => (
+              <SwiperSlide key={dish.id}>
+                <Dishs
+                  data={dish}
+                  key={dish.id}
                 />
               </SwiperSlide>
             ))}
-        </MealsSection>
+        </DishsSection>
 
-        <MealsSection
+        <DishsSection
           $width={Width}
           title={"Sobremesas"}
         >
           {data
-            .filter((meal) => meal.category === "Sobremesas")
-            .map((meal) => (
-              <SwiperSlide key={meal.id}>
-                <Meals data={meal} />
+            .filter((dish) => dish.category === "Sobremesas")
+            .map((dish) => (
+              <SwiperSlide key={dish.id}>
+                <Dishs data={dish} />
               </SwiperSlide>
             ))}
-        </MealsSection>
+        </DishsSection>
 
-        <MealsSection
+        <DishsSection
           $width={Width}
           title={"Bebidas"}
         >
           {data
-            .filter((meal) => meal.category === "Bebidas")
-            .map((meal) => (
-              <SwiperSlide key={meal.id}>
-                <Meals data={meal} />
+            .filter((dish) => dish.category === "Bebidas")
+            .map((dish) => (
+              <SwiperSlide key={dish.id}>
+                <Dishs data={dish} />
               </SwiperSlide>
             ))}
-        </MealsSection>
+        </DishsSection>
       </Main>
       <Footer />
     </Container>

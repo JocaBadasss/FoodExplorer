@@ -12,7 +12,7 @@ import { Container } from "./styles"
 
 register()
 
-export const MealsSection = ({ title, children, ...rest }) => {
+export const DishsSection = ({ title, children, ...rest }) => {
   const [isLastSlide, setIsLastSlide] = useState(false)
 
   const Width = UseWidth()
