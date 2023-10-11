@@ -4,6 +4,7 @@ import Home from "../pages/Home"
 import Favorites from "../pages/Favorites"
 import CheckOut from "../pages/CheckOut"
 import Details from "../pages/DishDetails"
+import Payment from "../pages/Payment"
 
 export default function AppRoutes() {
   return (
@@ -23,6 +24,10 @@ export default function AppRoutes() {
       <Route
         path="/details/:id"
         element={<Details />}
+      />
+      <Route
+        path="/payment"
+        element={<Payment />}
       />
     </Routes>
   )

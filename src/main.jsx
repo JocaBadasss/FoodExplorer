@@ -7,6 +7,8 @@ import { ThemeProvider } from "styled-components"
 
 import { AuthProvider } from "./hooks/auth.jsx"
 import { FavoritesProvider } from "./hooks/favorites.jsx"
+import { Provider } from "react-redux"
+import store from "./redux/store.js"
 
 import Routes from "./routes"
 
@@ -14,11 +16,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={themes}>
       <GlobalStyles />
-      <AuthProvider>
-        <FavoritesProvider>
-          <Routes />
-        </FavoritesProvider>
-      </AuthProvider>
+      <Provider store={store}>
+        <AuthProvider>
+          <FavoritesProvider>
+            <Routes />
+          </FavoritesProvider>
+        </AuthProvider>
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>
 )

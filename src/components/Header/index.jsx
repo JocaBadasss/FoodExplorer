@@ -5,6 +5,9 @@ import { PiReceiptBold } from "react-icons/pi"
 import { PiSignOut } from "react-icons/pi"
 import { AiOutlineSearch } from "react-icons/ai"
 
+import { selectDishsQuantity } from "../../redux/cart/selectors"
+
+import { useSelector } from "react-redux"
 import UseWidthHook from "../../hooks/useResize"
 
 import { useAuth } from "../../hooks/auth"
@@ -23,27 +26,18 @@ import {
 import { Logo } from "../Logo"
 export const Header = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
-  const [cartQuantity, setCartQuantity] = useState(0)
 
   const { signOut } = useAuth()
 
   const WidthScreen = UseWidthHook()
 
-  const handleSignOut = () => {
-    signOut()
-  }
+  const cartQuantity = useSelector(selectDishsQuantity)
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const getCart = JSON.parse(sessionStorage.getItem("cart")) || []
-
-    const cartQuantity = getCart.reduce((acc, dish) => {
-      return acc + dish.quantity
-    }, 0)
-
-    setCartQuantity(cartQuantity)
-  })
+  const handleSignOut = () => {
+    signOut()
+  }
 
   return (
     <Container>
