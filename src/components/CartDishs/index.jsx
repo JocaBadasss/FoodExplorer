@@ -2,6 +2,8 @@ import { api } from "../../services/api"
 import { useDispatch } from "react-redux"
 import { removeDish } from "../../redux/cart/slice"
 
+import UseWidth from "../../hooks/useResize"
+
 import { Container } from "./styles"
 
 export const CartDishs = ({ data }) => {
@@ -10,17 +12,29 @@ export const CartDishs = ({ data }) => {
     dispatch(removeDish(data.id))
   }
 
+  const Width = UseWidth()
+
   return (
     <Container>
       <img
         src={`${api.defaults.baseURL}/files/${data.image}`}
         alt={`Imagem de um prato com ${data.name}`}
       />
-      <div>
-        <h1>{data.name}</h1>
-        <h2>Quantidade: {data.quantity}</h2>
-        <button onClick={handleDishRemove}>Remover do pedido</button>
-      </div>
+      {Width < 428 ? (
+        <div>
+          <h1>{data.name}</h1>
+          <h2>Quantidade: {data.quantity}</h2>
+          <button onClick={handleDishRemove}>Remover do pedido</button>
+        </div>
+      ) : (
+        <div>
+          <h1>
+            {data.quantity}x {data.name}{" "}
+            <span>R$ {(data.price_cents / 100).toLocaleString("pt-BR")}</span>{" "}
+          </h1>
+          <button onClick={handleDishRemove}>Excluir</button>
+        </div>
+      )}
     </Container>
   )
 }

@@ -80,7 +80,7 @@ export const Header = () => {
             <span>{cartQuantity}</span>
           </div>
         ) : (
-          <div>
+          <div onClick={() => navigate("/checkout/payment")} >
             <PiReceiptBold size={30} />
             <p>
               Pedidos&nbsp;&#40;<span>{cartQuantity}</span>&#41;

@@ -41,7 +41,7 @@ export default function CheckOut() {
             <div className="button-wrapper">
               <Button
                 title="Avançar"
-                onClick={() => navigate("/payment")}
+                onClick={() => navigate("/checkout/payment")}
               />
             </div>
           </div>

@@ -26,7 +26,7 @@ export default function AppRoutes() {
         element={<Details />}
       />
       <Route
-        path="/payment"
+        path="/checkout/payment"
         element={<Payment />}
       />
     </Routes>
