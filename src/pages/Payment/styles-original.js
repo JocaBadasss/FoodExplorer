@@ -8,6 +8,7 @@ export const Container = styled.div`
     "header"
     "main"
     "footer";
+  grid-template-rows: ${({ $width }) => ($width < 768 ? "11.2rem" : "10.4rem")} auto 7.7rem;
 
   > main {
     padding: 5.6rem 4rem 15.2rem 3.5rem;
@@ -44,18 +45,14 @@ export const Container = styled.div`
           box-shadow: inset 0 -0.5px 0 1px ${({ theme }) => theme.COLORS.LIGHT_600};
           border-radius: 0 0 0.5rem 0.5rem;
 
-          #form-checkout {
-            display: flex;
-            flex-direction: column;
-            max-width: 60rem;
+          form {
+            display: grid;
             justify-content: center;
             gap: 3.7rem;
 
             ${({ theme }) => theme.FONTS.ROBOTO_SMALL_REGULAR};
 
-            input,
-            .input-div,
-            select {
+            input {
               width: 100%;
               height: 4.8rem;
               color: ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -68,20 +65,9 @@ export const Container = styled.div`
               box-shadow: 0 0 0 1px ${({ theme }) => theme.COLORS.LIGHT_100};
             }
 
-            .label-checkbox {
-              display: flex;
-            }
-
-            .checkbox {
-              width: unset;
-              height: unset;
-              box-shadow: unset;
-            }
-
             label {
               display: grid;
               gap: 0.8rem;
-              width: 100%;
             }
 
             .inputs-wrapper {
@@ -92,50 +78,6 @@ export const Container = styled.div`
 
             button {
               width: 100%;
-            }
-
-            #form-checkout__installments,
-            #form-checkout__cardholderEmail,
-            .label-hide {
-              display: none;
-            }
-
-            .check-hide {
-              display: none;
-            }
-
-            .progress-bar {
-              width: 100%;
-            }
-
-            .progress {
-              background: rgba(255, 255, 255, 0.1);
-              justify-content: flex-start;
-              border-radius: 100px;
-              align-items: center;
-              position: relative;
-              padding: 0 5px;
-              display: flex;
-              height: 40px;
-              width: 500px;
-            }
-
-            .progress-value {
-              animation: load 3s normal forwards;
-              box-shadow: 0 10px 40px -10px #fff;
-              border-radius: 100px;
-              background: #fff;
-              height: 30px;
-              width: 0;
-            }
-
-            @keyframes load {
-              0% {
-                width: 0;
-              }
-              100% {
-                width: 68%;
-              }
             }
           }
         }

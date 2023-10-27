@@ -1,20 +1,10 @@
-import {
-  initMercadoPago,
-  CardNumber,
-  SecurityCode,
-  ExpirationDate,
-  getIdentificationTypes,
-  getPaymentMethods,
-  getIssuers,
-  getInstallments,
-} from "@mercadopago/sdk-react/"
-import { createCardToken } from "@mercadopago/sdk-react/coreMethods"
-initMercadoPago("TEST-b21b3b2e-2dc7-4b74-ac85-343bcc72f2ac")
+import { loadMercadoPago } from "@mercadopago/sdk-js"
+await loadMercadoPago()
+const mp = new window.MercadoPago("TEST-9d45c0f8-3c0d-4340-aaf5-11cbb8e06bb2")
 
-import { useState } from "react"
-
+import { useState, useEffect } from "react"
+import { useAuth } from "../../hooks/auth"
 import { useSelector } from "react-redux"
-
 import { selectCartTotal } from "../../redux/cart/selectors"
 
 import pix from "../../assets/pix.svg"
@@ -35,31 +25,171 @@ import { Button } from "../../components/Button"
 import { CartDishs } from "../../components/CartDishs"
 
 import { Container, PaymentOptions } from "./styles"
+import { api } from "../../services/api"
 
 export default function Payment() {
+  const [paymentResponse, setPaymentResponse] = useState(null)
+  const [paymentStatus, setPaymentStatus] = useState("credit")
+
   const data = useSelector((rootReducer) => rootReducer.cartReducer.dishs)
   const total = useSelector(selectCartTotal)
-
-  const [paymentStatus, setPaymentStatus] = useState("pix")
   const Width = UseWidth()
+  const { user } = useAuth()
 
   const handlePaymentChange = (payment) => {
     setPaymentStatus(payment)
   }
 
-  const createcardToken = async (e) => {
-    e.preventDefault()
-    const response = await createCardToken({
-      cardNumber: "5031433215406351",
-      cardholderName: "APRO",
-      cardExpirationMonth: "11",
-      cardExpirationYear: "2025",
-      securityCode: "123",
-      identificationType: "CPF",
-      identificationNumber: "12345678912",
+  useEffect(() => {
+    if (paymentStatus !== "credit") {
+      return
+    }
+
+    const cardForm = mp.cardForm({
+      amount: total.replace(",", "."),
+      iframe: true,
+      form: {
+        id: "form-checkout",
+        cardNumber: {
+          id: "form-checkout__cardNumber",
+          placeholder: "0000 0000 0000 0000",
+          style: {
+            color: "#E1E1E6",
+            placeholderColor: "#7C7C8A",
+            fontFamily: "Roboto",
+          },
+          customFonts: [
+            {
+              src: "https://fonts.googleapis.com/css2?family=Roboto",
+            },
+          ],
+        },
+        expirationDate: {
+          id: "form-checkout__expirationDate",
+          placeholder: "MM/YY",
+          style: {
+            color: "#E1E1E6",
+            placeholderColor: "#7C7C8A",
+            fontFamily: "Roboto",
+          },
+          customFonts: [
+            {
+              src: "https://fonts.googleapis.com/css2?family=Roboto",
+            },
+          ],
+        },
+        securityCode: {
+          id: "form-checkout__securityCode",
+          placeholder: "Código de segurança",
+          style: {
+            color: "#E1E1E6",
+            placeholderColor: "#7C7C8A",
+            fontFamily: "Roboto",
+          },
+          customFonts: [
+            {
+              src: "https://fonts.googleapis.com/css2?family=Roboto",
+            },
+          ],
+        },
+        cardholderName: {
+          id: "form-checkout__cardholderName",
+          placeholder: "Titular do cartão",
+        },
+        issuer: {
+          id: "form-checkout__issuer",
+          placeholder: "Banco emissor",
+        },
+        installments: {
+          id: "form-checkout__installments",
+          placeholder: "Parcelas",
+        },
+        identificationType: {
+          id: "form-checkout__identificationType",
+          placeholder: "Tipo de documento",
+        },
+        identificationNumber: {
+          id: "form-checkout__identificationNumber",
+          placeholder: "Número do documento",
+        },
+        cardholderEmail: {
+          id: "form-checkout__cardholderEmail",
+          placeholder: "E-mail",
+        },
+      },
+      callbacks: {
+        onFormMounted: (error) => {
+          if (error) return console.warn("Form Mounted handling error: ", error)
+          console.log("Form mounted")
+        },
+        onSubmit: async (event) => {
+          event.preventDefault()
+          setPaymentStatus("waitingPaymentAprove")
+
+          const {
+            paymentMethodId: payment_method_id,
+            issuerId: issuer_id,
+            cardholderEmail: email,
+            amount,
+            token,
+            installments,
+            identificationNumber,
+            identificationType,
+          } = cardForm.getCardFormData()
+
+          const dishs = data.map((dish) => ({
+            id: dish.id,
+            quantity: dish.quantity,
+          }))
+
+          const paymentDetails = {
+            dishs,
+            token,
+            issuer_id,
+            payment_method_id,
+            transaction_amount: Number(amount),
+            installments: Number(installments),
+            description: data.map((dish) => dish.name).join(", "),
+            payer: {
+              email,
+              identification: {
+                type: identificationType,
+                number: identificationNumber,
+              },
+            },
+          }
+
+          console.log(paymentDetails)
+
+          const response = await api.post("/transactions", paymentDetails)
+
+          if (response.data.status === "approved") {
+            setPaymentStatus("paymentAproved")
+          }
+          if (response.data.status === "rejected") {
+            setPaymentStatus("orderCanceled")
+          }
+
+          console.log(response.data.status)
+        },
+        onFetching: (resource) => {
+          console.log("Fetching resource: ", resource)
+
+          // Animate progress bar
+          const progressBar = document.querySelector(".progress-bar")
+          progressBar.removeAttribute("value")
+
+          return () => {
+            progressBar.setAttribute("value", "0")
+          }
+        },
+      },
     })
-    console.log("Card Token Response = ", response)
-  }
+
+    return () => {
+      cardForm.unmount()
+    }
+  }, [paymentStatus])
 
   return (
     <Container $width={Width}>
@@ -123,39 +253,120 @@ export default function Payment() {
             )}
             {paymentStatus === "credit" && (
               <div className="credit-card-wrapper">
-                <form>
-                  <label htmlFor="credit-number">
+                <form id="form-checkout">
+                  <label htmlFor="checkout__cardNumber">
                     Número do cartão
-                    <input
-                      type="number"
-                      id="credit-number"
-                      placeholder="0000 0000 0000 0000"
-                    />
+                    <div
+                      id="form-checkout__cardNumber"
+                      className="input-div"
+                    ></div>
                   </label>
+
                   <div className="inputs-wrapper">
-                    <label htmlFor="credit-date">
+                    <label htmlFor="form-checkout__expirationDate">
                       Validade
-                      <input
-                        type="number"
-                        id="credit-date"
-                        placeholder="04/25"
-                      />
+                      <div
+                        id="form-checkout__expirationDate"
+                        className="input-div"
+                      ></div>
                     </label>
 
-                    <label htmlFor="credit-cvc">
+                    <label htmlFor="form-checkout__securityCode">
                       CVC
-                      <input
-                        type="number"
-                        id="credit-cvc"
-                        placeholder="000"
-                      />
+                      <div
+                        id="form-checkout__securityCode"
+                        className="input-div"
+                      ></div>
                     </label>
                   </div>
+                  <label
+                    htmlFor="checkbox"
+                    className="label-checkbox"
+                  >
+                    Usando o cartão de outra pessoa?
+                    <input
+                      className="checkbox"
+                      type="checkbox"
+                      name=""
+                      id="checkbox"
+                    />
+                  </label>
+                  <label
+                    htmlFor="form-checkout__cardholderName"
+                    className="check-hide"
+                  >
+                    Nome Completo &#40; igual no cartão &#41;
+                    <input
+                      type="text"
+                      id="form-checkout__cardholderName"
+                      value={"OTHE"}
+                      readOnly
+                      className="check-hide"
+                    />
+                  </label>
+                  <label
+                    htmlFor="form-checkout__issuer"
+                    className="label-hide"
+                  >
+                    Bandeira
+                    <select id="form-checkout__issuer"></select>
+                  </label>
+                  <label
+                    htmlFor="form-checkout__installments"
+                    className="label-hide"
+                  >
+                    Parcelas
+                    <select id="form-checkout__installments"></select>
+                  </label>
+                  <label
+                    htmlFor="form-checkout__identificationType"
+                    className="check-hide"
+                  >
+                    Tipo de documento
+                    <select
+                      id="form-checkout__identificationType"
+                      className="check-hide"
+                    ></select>
+                  </label>
+                  <label
+                    htmlFor="form-checkout__identificationNumber"
+                    className="check-hide"
+                  >
+                    Número do documento
+                    <input
+                      type="text"
+                      id="form-checkout__identificationNumber"
+                      placeholder="000.000.000-00"
+                      value={"12345678909"}
+                      readOnly
+                      className="check-hide"
+                    />
+                  </label>
+
+                  <label
+                    htmlFor="form-checkout__cardholderEmail"
+                    className="label-hide"
+                  >
+                    Email
+                    <input
+                      type="email"
+                      id="form-checkout__cardholderEmail"
+                      value={user.email}
+                      readOnly
+                    />
+                  </label>
 
                   <Button
-                    onClick={(e) => createcardToken(e)}
                     title={"Finalizar pagamento"}
+                    id="form-checkout__submit"
                   />
+
+                  <progress
+                    value="0"
+                    className="progress-bar"
+                  >
+                    Carregando...
+                  </progress>
                 </form>
               </div>
             )}
