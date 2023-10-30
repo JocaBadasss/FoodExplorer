@@ -1,6 +1,12 @@
 import { loadMercadoPago } from "@mercadopago/sdk-js"
-await loadMercadoPago()
-const mp = new window.MercadoPago("TEST-9d45c0f8-3c0d-4340-aaf5-11cbb8e06bb2")
+
+let mp
+const initMercadoPago = async () => {
+  await loadMercadoPago()
+  mp = new window.MercadoPago("TEST-9d45c0f8-3c0d-4340-aaf5-11cbb8e06bb2")
+}
+
+initMercadoPago()
 
 import { useState, useEffect } from "react"
 import { useAuth } from "../../hooks/auth"
