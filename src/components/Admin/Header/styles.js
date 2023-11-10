@@ -1,4 +1,15 @@
-import { styled } from "styled-components"
+import { styled, keyframes } from "styled-components"
+
+//how to create a key frame on style components
+const movePlaceHolder = keyframes`
+
+0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%); /* Move para a esquerda completamente */
+    }
+`
 
 export const Container = styled.header`
   grid-area: header;
@@ -23,23 +34,19 @@ export const Container = styled.header`
     div {
       height: 2.6rem;
 
-      display: contents;
+      /* display: contents; */
 
       > svg {
-        width: 16rem;
+        width: 15rem;
         height: 2.4rem;
       }
-    }
-
-    span {
-      color: ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
     }
   }
 
   @media (min-width: 1024px) {
     height: 10.4rem;
 
-    padding: 2.4rem 12.3rem;
+    padding: 2.4rem clamp(4.8rem, -17.5256rem + 21.8023vw, 12.3rem);
 
     align-items: center;
     gap: 3.6rem;
@@ -53,12 +60,12 @@ export const Container = styled.header`
       div {
         height: 3rem;
 
-        display: contents;
+        /* display: contents; */
 
-        > svg {
+        /* > svg {
           width: 29em;
           height: 3rem;
-        }
+        } */
       }
     }
   }
@@ -190,7 +197,10 @@ export const Search = styled.div`
   width: 100%;
   height: 4.8rem;
 
-  padding-left: clamp(1rem, -25.9474rem + 26.3158vw, 10rem);
+  /* padding-left: clamp(1rem, -25.9474rem + 26.3158vw, 10rem);
+   */
+
+  padding: 0 1.25rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
   border-radius: 0.5rem;
@@ -201,11 +211,22 @@ export const Search = styled.div`
 
     width: 100%;
   }
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    // how to add a key frame on style components on placeholder input
+
+    > input {
+      &::placeholder {
+        white-space: nowrap;
+        overflow: hidden;
+        animation: ${movePlaceHolder} 1s linear infinite;
+      }
+    }
+  }
 `
 
 export const MenuMobile = styled.section`
   position: absolute;
-  /* display: ${({ $menuisopen }) => ($menuisopen ? "unset" : "none")}; */
 
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
@@ -243,12 +264,16 @@ export const MenuMobile = styled.section`
     margin: 3.6rem 2.8rem 1.3rem;
     height: 4.8rem;
 
+    display: flex;
+    flex-direction: column;
+
     button {
       padding: 1rem;
       text-align: left;
 
       font-size: 2.4rem;
       font-weight: 300;
+      box-shadow: inset 0 -1px 0 ${({ theme }) => theme.COLORS.DARK_1000};
     }
   }
 `
@@ -288,4 +313,12 @@ export const SignOut = styled.button`
   @media (min-width: 1024px) {
     display: unset;
   }
+`
+export const HeaderButton = styled.button`
+  white-space: nowrap;
+
+  background: none !important;
+
+  ${({ theme }) => theme.FONTS.ROBOTO_SMALL_REGULAR};
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
 `

@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom"
-import AdminHome from "../pages/AdminHome"
+import Home from "../pages/Admin/Home"
 export default function AdminRoutes() {
   return (
     <Routes>
       <Route
         path="/"
-        element={<AdminHome />}
+        element={<Home />}
       />
     </Routes>
   )
