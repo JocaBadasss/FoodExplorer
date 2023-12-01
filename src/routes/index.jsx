@@ -23,8 +23,6 @@ export default function Routes() {
       ) : (
         <AuthRoutes />
       )}
-
-      {/* <AuthRoutes/> */}
     </BrowserRouter>
   )
 }

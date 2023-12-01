@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { api } from "../services/api"
+import { enqueueSnackbar } from "notistack"
 
 const AuthContext = createContext({})
 
@@ -13,18 +15,28 @@ const AuthProvider = ({ children }) => {
 
       const { token, user } = response.data
 
-      localStorage.setItem("@s:t", token)
+      enqueueSnackbar("Login efetuado com sucesso!", {
+        variant: "success",
+        autoHideDuration: 1000,
+      })
 
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`
+      setTimeout(() => {
+        enqueueSnackbar("Redirecionando...", {
+          variant: "success",
+          autoHideDuration: 500,
+        })
+      }, 1000)
 
-      setData({ token, user })
+      await new Promise((resolve) => {
+        setTimeout(() => {
+          localStorage.setItem("@s:t", token)
+          api.defaults.headers.common["Authorization"] = `Bearer ${token}`
+          setData({ token, user })
+          resolve()
+        }, 2000)
+      })
     } catch (error) {
-      if (error.response) {
-        alert(error.response.data.message)
-      } else {
-        console.log(error)
-        alert("Erro desconhecido ao entrar")
-      }
+      throw error
     }
   }
 
@@ -37,7 +49,7 @@ const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    ;(async () => {
+    const isUserAlreadyLoggedIn = async () => {
       const token = localStorage.getItem("@s:t")
 
       if (token) {
@@ -49,7 +61,8 @@ const AuthProvider = ({ children }) => {
 
         setData({ token, user })
       }
-    })()
+    }
+    isUserAlreadyLoggedIn()
   }, [])
 
   return (

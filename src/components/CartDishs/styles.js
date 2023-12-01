@@ -10,6 +10,7 @@ export const Container = styled.div`
   > img {
     width: 7.2rem;
     height: 7.2rem;
+    border-radius: 50%;
   }
 
   > div {
@@ -19,7 +20,7 @@ export const Container = styled.div`
 
       span {
         color: ${({ theme }) => theme.COLORS.LIGHT_400};
-        ${({theme}) => theme.FONTS.ROBOTO_SMALLEST_REGULAR}
+        ${({ theme }) => theme.FONTS.ROBOTO_SMALLEST_REGULAR}
       }
     }
     > h2 {
@@ -35,6 +36,5 @@ export const Container = styled.div`
   }
 
   @media (min-width: 514px) {
-    /* width: 28rem; */
   }
 `

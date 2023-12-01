@@ -1,24 +1,21 @@
-import { styled, keyframes } from "styled-components"
-
-//how to create a key frame on style components
-const movePlaceHolder = keyframes`
-
-0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%); /* Move para a esquerda completamente */
-    }
-`
+import { styled, css } from "styled-components"
 
 export const Container = styled.header`
   grid-area: header;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1.6rem;
 
+  > span {
+    font-size: 2.2rem;
+  }
+
+  ${({ $menuisopen }) =>
+    !$menuisopen &&
+    css`
+      justify-content: space-between;
+      gap: 1.6rem;
+    `}
   background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
   padding: 5.6rem 2.8rem 2.4rem;
@@ -33,8 +30,6 @@ export const Container = styled.header`
     display: contents;
     div {
       height: 2.6rem;
-
-      /* display: contents; */
 
       > svg {
         width: 15rem;
@@ -59,13 +54,6 @@ export const Container = styled.header`
       display: contents;
       div {
         height: 3rem;
-
-        /* display: contents; */
-
-        /* > svg {
-          width: 29em;
-          height: 3rem;
-        } */
       }
     }
   }
@@ -197,9 +185,6 @@ export const Search = styled.div`
   width: 100%;
   height: 4.8rem;
 
-  /* padding-left: clamp(1rem, -25.9474rem + 26.3158vw, 10rem);
-   */
-
   padding: 0 1.25rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
@@ -213,20 +198,19 @@ export const Search = styled.div`
   }
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    // how to add a key frame on style components on placeholder input
-
     > input {
       &::placeholder {
         white-space: nowrap;
         overflow: hidden;
-        animation: ${movePlaceHolder} 1s linear infinite;
       }
     }
   }
 `
 
 export const MenuMobile = styled.section`
-  position: absolute;
+  position: fixed;
+
+  overflow-y: scroll;
 
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
@@ -234,35 +218,18 @@ export const MenuMobile = styled.section`
     $menuisopen ? "translateX(0)" : "translateX(-100%)"};
 
   width: 100%;
-  height: 100%;
 
-  top: 0;
+  top: 112px;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 2;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_400};
 
-  > header {
-    height: 11.2rem;
-
-    display: flex;
-    align-items: center;
-
-    padding: 5.6rem 2.8rem 2.4rem;
-
-    background-color: ${({ theme }) => theme.COLORS.DARK_700};
-
-    p {
-      margin-left: 3.4rem;
-      font-size: 2.2rem;
-    }
-  }
-
-  > div {
+  > .menu {
+    height: 100vh;
     margin: 3.6rem 2.8rem 1.3rem;
-    height: 4.8rem;
 
     display: flex;
     flex-direction: column;
@@ -275,10 +242,19 @@ export const MenuMobile = styled.section`
       font-weight: 300;
       box-shadow: inset 0 -1px 0 ${({ theme }) => theme.COLORS.DARK_1000};
     }
+
+    > .menu-options {
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+    }
   }
 `
 export const Input = styled.div`
   height: 4.8rem;
+
+  top: 0;
+  z-index: 3;
 
   padding: 1.2rem 1.4rem;
 

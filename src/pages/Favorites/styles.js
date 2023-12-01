@@ -2,6 +2,8 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   > main {
+    height: 100vh;
+
     padding: 5.6rem 0 3.5rem 3.5rem;
 
     > h1 {

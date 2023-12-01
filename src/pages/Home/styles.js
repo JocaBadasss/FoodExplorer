@@ -1,7 +1,5 @@
 import { styled } from "styled-components"
 
-import macarons from "../../assets/macarons.png"
-
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -19,22 +17,29 @@ export const Main = styled.main`
   display: grid;
   gap: 6.2rem;
 
+  position: relative;
+
+  padding-top: ${({ $issearching }) =>
+    $issearching ? "3.2rem" : "0"} !important;
+
   padding: 0 0 0 clamp(2.4rem, 0.1632rem + 5.2632vw, 4.2rem);
 
   @media (min-width: 768px) {
     padding: 0 clamp(4.3rem, -5.9742rem + 13.3779vw, 12.3rem) 0
       clamp(4.3rem, -5.9742rem + 13.3779vw, 12.3rem);
   }
+
+  .banner-wrapper {
+    padding-left: clamp(0.6rem, 0.0286rem + 1.7857vw, 1.4rem);
+  }
 `
 
 export const Banner = styled.div`
-  /* width: clamp(37.6rem, 3.7243rem + 79.1489vw, 112rem); */
   height: clamp(12rem, 5.6255rem + 14.8936vw, 26rem);
 
   position: relative;
 
   margin-top: clamp(4.4rem, -1.0198rem + 12.7524vw, 16.4rem);
-  margin-right: 1.6rem;
 
   display: flex;
   justify-content: space-around;
@@ -76,6 +81,54 @@ export const Banner = styled.div`
     p {
       font-size: 1.2rem;
     }
+  }
+
+  @media (min-width: 320px) and (max-width: 374px) {
+    h1 {
+      font-size: clamp(1.4rem, 1rem + 1.25vw, 1.6rem) !important;
+    }
+
+    p {
+      font-size: clamp(0.9rem, 0.7rem + 0.625vw, 1rem) !important;
+    }
+  }
+
+  @media (min-width: 375px) and (max-width: 425px) {
+    h1 {
+      font-size: clamp(1.6rem, 0.1rem + 4vw, 1.8rem) !important;
+    }
+
+    p {
+      font-size: clamp(1.07rem, 0.095rem + 2.6vw, 1.2rem) !important;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 424px) {
+    .container {
+      > img {
+        width: clamp(13.1rem, -3.451rem + 52.0612vw, 37.3rem) !important;
+      }
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 350px) {
+    hgroup {
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+
+    img {
+      height: clamp(14.9rem, 2.9251rem + 27.9787vw, 41.2rem);
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    width: clamp(28rem, 0.2143rem + 86.8304vw, 66.9rem);
   }
 
   @media (min-width: 768px) {

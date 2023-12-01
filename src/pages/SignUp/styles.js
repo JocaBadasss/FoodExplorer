@@ -51,6 +51,7 @@ export const Form = styled.form`
 
   > a {
     text-align: center;
+    margin-top: 0;
   }
 
   > h1 {
@@ -81,17 +82,69 @@ export const Form = styled.form`
       text-align: center;
     }
   }
+
+  @media (max-height: 700px) and (min-width: 1024px) {
+    padding: 2.8rem 6.4rem;
+  }
 `
 export const Inputs = styled.div`
   display: flex;
   flex-direction: column;
-  gap: clamp(3.2rem, 0.8296rem + 7.4074vw, 4rem);
+  gap: 3.2rem;
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px ${({ theme }) => theme.COLORS.DARK_900}
+      inset;
+
+    -webkit-text-fill-color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    -webkit-border-radius: 0.8rem;
+  }
 
   input {
     width: 100%;
 
     &::placeholder {
       font-size: clamp(1rem, -0.7778rem + 5.5556vw, 1.6rem);
+    }
+  }
+
+  .textfield-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .input-textfield {
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+    border: none;
+
+    > .MuiInputBase-root {
+      font-family: "Roboto", sans-serif;
+      font-size: 1.6rem;
+      background-color: ${({ theme }) => theme.COLORS.DARK_900};
+      border-radius: 0.8rem;
+    }
+
+    .MuiFormHelperText-root {
+      font-size: 1.2rem;
+    }
+    .MuiFilledInput-root:after {
+      border-bottom: 2px solid ${({ theme }) => theme.COLORS.LIGHT_700};
+    }
+
+    > .MuiInputBase-colorPrimary {
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    }
+
+    > label {
+      color: ${({ theme }) => theme.COLORS.LIGHT_500};
+      font-size: clamp(1rem, -0.7778rem + 5.5556vw, 1.6rem);
+    }
+
+    &::placeholder {
+      color: ${({ theme }) => theme.COLORS.LIGHT_500};
     }
   }
 `

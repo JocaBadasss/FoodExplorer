@@ -3,9 +3,9 @@ import { styled } from "styled-components"
 export const Container = styled.div``
 
 export const Card = styled.section`
-  height: clamp(29.2rem, 21.522rem + 18.0659vw, 46.2rem);
-
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
+
+  height: ${({ $isadmin }) => $isadmin && `29.2rem`};
 
   position: relative;
 
@@ -13,6 +13,7 @@ export const Card = styled.section`
 
   display: flex;
   flex-direction: column;
+  ${({ $isadmin }) => $isadmin && `justify-content: center`};
   align-items: center;
   gap: 1.2rem;
 
@@ -32,6 +33,8 @@ export const Card = styled.section`
   > img {
     width: 8.8rem;
     height: 8.8rem;
+
+    border-radius: 50%;
   }
 
   .button-title {
@@ -43,7 +46,14 @@ export const Card = styled.section`
 
     ${({ theme }) => theme.FONTS.ROBOTO_SMALLER_REGULAR};
     font-size: clamp(1rem, 0.8193rem + 0.4251vw, 1.4rem);
+
+    overflow: hidden;
     height: 3em;
+
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   > span {
@@ -51,9 +61,37 @@ export const Card = styled.section`
     color: ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
   }
 
+  .image {
+    width: 8.8rem;
+    height: 8.8rem;
+  }
+
+  .skeleton-title {
+    width: 15rem;
+    height: 2rem;
+  }
+
+  .skeleton-price {
+    width: 6rem;
+    height: 1.6rem;
+  }
+
+  .skeleton-description {
+    width: 12rem;
+  }
+
+  @media (min-width: 375px) and (max-width: 767px) {
+    width: 21rem;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      width: max-content;
+    }
+  }
+
   @media (min-width: 1024px) {
-    /* min-width: 28.9rem; */
-    max-width: clamp(21rem, 16.7635rem + 9.9682vw, 30.4rem);
+    max-width: 30.4rem;
 
     min-height: 46.2rem;
 
@@ -84,7 +122,8 @@ export const Card = styled.section`
       display: contents;
       > h1 {
         ${({ theme }) => theme.FONTS.POPPINS_300_BOLD};
-        width: 25.5rem;
+
+        white-space: nowrap;
       }
     }
 
@@ -97,6 +136,24 @@ export const Card = styled.section`
     > span {
       ${({ theme }) => theme.FONTS.ROBOTO_BIGGEST_REGULAR};
       color: ${({ theme }) => theme.COLORS.TINTS_CAKE_200};
+    }
+    .image {
+      width: 17.6rem;
+      height: 17.6rem;
+    }
+
+    .skeleton-title {
+      width: 25.6rem;
+      height: 3rem;
+    }
+
+    .skeleton-description {
+      width: 24rem;
+    }
+
+    .skeleton-price {
+      width: 12.3rem;
+      height: 3rem;
     }
   }
 `

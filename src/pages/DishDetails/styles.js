@@ -64,7 +64,7 @@ export const Container = styled.div`
           justify-content: center;
           flex-basis: 33%;
 
-          span {
+          .tag {
             padding: 0.4rem 0.8rem;
 
             border-radius: 0.5rem;
@@ -74,6 +74,29 @@ export const Container = styled.div`
             color: ${({ theme }) => theme.COLORS.LIGHT_100};
           }
         }
+      }
+
+      .skeleton-image {
+        width: clamp(26.4rem, 20.7092rem + 13.39vw, 39rem);
+        height: clamp(26.4rem, 20.7092rem + 13.39vw, 39rem);
+      }
+
+      .skeleton-title {
+        width: 23.9rem;
+      }
+
+      .skeleton-description {
+        width: 29.1rem;
+      }
+
+      .skeleton-tag {
+        width: 6.5rem;
+        height: 3.2rem;
+      }
+
+      .skeleton-input {
+        width: 11.2rem;
+        height: 3.6rem;
       }
     }
   }
@@ -104,6 +127,24 @@ export const Container = styled.div`
         }
       }
     }
+
+    .skeleton-image {
+      width: clamp(26.4rem, 20.7092rem + 13.39vw, 39rem);
+      height: clamp(26.4rem, 20.7092rem + 13.39vw, 39rem);
+    }
+
+    .skeleton-title {
+      width: 35.4rem !important;
+    }
+
+    .skeleton-description {
+      width: 100% !important;
+    }
+
+    .skeleton-tag {
+      width: 6.5rem;
+      height: 3.2rem;
+    }
   }
 `
 
@@ -111,7 +152,7 @@ export const IncludeContainer = styled.div`
   width: 100%;
 
   display: flex;
-  /* flex-wrap: wrap; */
+
   justify-content: center;
   align-items: center;
   gap: 1.6rem;
@@ -124,6 +165,7 @@ export const IncludeContainer = styled.div`
     font-size: 1rem;
     line-height: 16.2px;
     border-radius: 0.3rem;
+    white-space: nowrap;
   }
 
   > div {
@@ -159,6 +201,15 @@ export const IncludeContainer = styled.div`
         -webkit-appearance: none;
       }
     }
+  }
+
+  .skeleton-button-wrapper {
+    border: none;
+    background: none;
+  }
+
+  .skeleton-button {
+    height: 3.6rem;
   }
 
   @media (min-width: 768px) {
@@ -210,6 +261,15 @@ export const IncludeContainer = styled.div`
           -webkit-appearance: none;
         }
       }
+    }
+
+    .skeleton-button {
+      height: 4.8rem;
+    }
+
+    .skeleton-input {
+      width: 9.9rem;
+      height: 3.2rem;
     }
   }
 `

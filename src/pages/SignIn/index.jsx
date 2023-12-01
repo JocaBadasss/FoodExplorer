@@ -1,57 +1,105 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { loginSchema } from "../../schemas/signInFormSchema"
+import { useForm } from "react-hook-form"
+
+import { enqueueSnackbar } from "notistack"
 
 import { useAuth } from "../../hooks/auth"
 
 import { Container, Form, Inputs } from "./styles"
 
-import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { Logo } from "../../components/Logo"
+
+import { Box, TextField, CircularProgress } from "@mui/material"
 export default function SignIn() {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: "all",
+    resolver: zodResolver(loginSchema),
+  })
 
   const { SignIn } = useAuth()
 
-  const handleSignIn = () => {
-    SignIn({ email, password })
+  const handleSignIn = async (data) => {
+    const { email, password } = data
+
+    try {
+      setIsLoading(true)
+
+      await SignIn({ email, password })
+    } catch (error) {
+      setIsLoading(false)
+
+      enqueueSnackbar(error.response.data.message, {
+        variant: "error",
+      })
+    }
   }
 
   return (
     <Container>
-      {/* <div>
-        <ExplorerLogo />
-
-      </div> */}
-
       <Logo />
-      <Form>
+      <Form onSubmit={handleSubmit(handleSignIn)}>
         <h1>Faça login</h1>
         <Inputs>
-          <Input
-            title="Email"
-            placeholder="Exemplo: exemplo@exemplo.com.br"
-            type="email"
-            id={"email"}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            title="Senha"
-            placeholder="No mínimo 6 caracteres"
-            type="password"
-            id={"password"}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <label className="textfield-label">
+            Email
+            <TextField
+              error={!!errors.email}
+              helperText={errors.email ? errors.email.message : ""}
+              {...register("email")}
+              label="Exemplo: exemplo@exemplo.com.br"
+              variant="filled"
+              className="input-textfield"
+              type="email"
+            />
+          </label>
+
+          <label className="textfield-label">
+            Senha
+            <TextField
+              error={!!errors.password}
+              helperText={errors.password ? errors.password.message : ""}
+              {...register("password")}
+              label="No mínimo 8 caracteres"
+              variant="filled"
+              className="input-textfield"
+              type="password"
+            />
+          </label>
         </Inputs>
 
-        <Button
-          title="Entrar"
-          onClick={(e) => {
-            e.preventDefault()
-            handleSignIn()
+        <Box
+          sx={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
           }}
-        />
+        >
+          {isLoading && (
+            <CircularProgress
+              size={48}
+              sx={{
+                color: "#750310",
+                position: "absolute",
+                left: "43.5%",
+              }}
+            />
+          )}
+          <Button
+            disabled={isLoading}
+            isLoading={isLoading}
+            title="Entrar"
+          />
+        </Box>
 
         <Link to="/register">Criar uma conta</Link>
       </Form>

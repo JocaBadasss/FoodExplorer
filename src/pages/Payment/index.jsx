@@ -1,4 +1,5 @@
 import { loadMercadoPago } from "@mercadopago/sdk-js"
+import { useNavigate } from "react-router-dom"
 
 let mp
 const initMercadoPago = async () => {
@@ -10,7 +11,8 @@ initMercadoPago()
 
 import { useState, useEffect } from "react"
 import { useAuth } from "../../hooks/auth"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { clearCart } from "../../redux/cart/slice"
 import { selectCartTotal } from "../../redux/cart/selectors"
 
 import pix from "../../assets/pix.svg"
@@ -37,8 +39,10 @@ export default function Payment() {
   const [paymentResponse, setPaymentResponse] = useState(null)
   const [paymentStatus, setPaymentStatus] = useState("credit")
 
+  const navigate = useNavigate()
   const data = useSelector((rootReducer) => rootReducer.cartReducer.dishs)
   const total = useSelector(selectCartTotal)
+  const dispatch = useDispatch()
   const Width = UseWidth()
   const { user } = useAuth()
 
@@ -165,23 +169,24 @@ export default function Payment() {
             },
           }
 
-          console.log(paymentDetails)
-
           const response = await api.post("/transactions", paymentDetails)
 
           if (response.data.status === "approved") {
             setPaymentStatus("paymentAproved")
+
+            dispatch(clearCart())
+
+            setTimeout(() => {
+              navigate("/order-history")
+            }, 3000)
           }
           if (response.data.status === "rejected") {
             setPaymentStatus("orderCanceled")
           }
-
-          console.log(response.data.status)
         },
         onFetching: (resource) => {
           console.log("Fetching resource: ", resource)
 
-          // Animate progress bar
           const progressBar = document.querySelector(".progress-bar")
           progressBar.removeAttribute("value")
 
@@ -305,7 +310,7 @@ export default function Payment() {
                     <input
                       type="text"
                       id="form-checkout__cardholderName"
-                      value={"OTHE"}
+                      value={"APRO"}
                       readOnly
                       className="check-hide"
                     />

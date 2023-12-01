@@ -5,6 +5,7 @@ import Favorites from "../pages/Favorites"
 import CheckOut from "../pages/CheckOut"
 import Details from "../pages/DishDetails"
 import Payment from "../pages/Payment"
+import OrderHistory from "../pages/OrderHistory"
 
 export default function AppRoutes() {
   return (
@@ -28,6 +29,10 @@ export default function AppRoutes() {
       <Route
         path="/checkout/payment"
         element={<Payment />}
+      />
+      <Route
+        path="/order-history"
+        element={<OrderHistory />}
       />
     </Routes>
   )

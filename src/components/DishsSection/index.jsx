@@ -34,7 +34,6 @@ export const DishsSection = ({ title, children, ...rest }) => {
         <Swiper
           {...swiperConfigs(Width)}
           onSlideChange={(swiper) => handleSlideChange(swiper)}
-          onMouseOver={() => console.log("cu")}
         >
           {children}
         </Swiper>

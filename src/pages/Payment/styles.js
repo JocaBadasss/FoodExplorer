@@ -186,6 +186,13 @@ export const Container = styled.div`
     }
   }
 
+  @media (min-width: 1024px) and (max-width: 1300px) {
+    main {
+      padding-left: 4.3rem !important;
+      padding-right: 3.6rem !important;
+    }
+  }
+
   @media (min-width: 1024px) {
     > main {
       display: flex;
@@ -202,6 +209,8 @@ export const Container = styled.div`
           max-height: 41.6rem;
 
           padding-right: 4rem;
+
+          overflow-y: scroll;
 
           div {
           }

@@ -7,7 +7,6 @@ export const Container = styled.section`
     "content";
 
   margin-bottom: 2.4rem;
-  position: relative;
 
   > h1 {
     grid-area: h1;
@@ -18,8 +17,6 @@ export const Container = styled.section`
 
   > .Cards {
     grid-area: content;
-
-    /* display: flex; */
 
     overflow-x: hidden;
   }
@@ -34,7 +31,12 @@ export const Container = styled.section`
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
+  }
+
+  @media (min-width: 1024px) and (max-width: 1365px) {
     .swiper {
+      position: relative;
+
       > .swiper-button-prev,
       .swiper-button-next {
         z-index: 9999999999999999;
@@ -45,49 +47,42 @@ export const Container = styled.section`
           transform: scale(1.2, 1.2);
         }
       }
+    }
 
-      &::before {
-        content: "";
+    .swiper::before,
+    .swiper::after {
+      content: "";
+      width: 30%;
+      height: 100%;
 
-        width: 32%;
-        height: 100%;
+      position: absolute;
+      bottom: 0;
 
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 2;
+      z-index: 2;
+    }
 
-        border-radius: 0.8rem;
+    .swiper::before {
+      left: 0;
 
-        background: linear-gradient(
-          to left,
-          hsla(200, 100%, 3%, 27.25%),
-          hsla(200, 100%, 3%, 100%)
-        );
-      }
+      background: linear-gradient(
+        to left,
+        hsla(200, 100%, 3%, 27.25%),
+        hsla(200, 100%, 3%, 100%)
+      );
+    }
 
-      &::after {
-        content: "";
+    .swiper::after {
+      right: -2px;
 
-        width: clamp(27rem, 3rem + 31.25vw, 35rem);
-        height: 46.2rem;
-
-        position: absolute;
-        top: 0;
-        right: -3.6%;
-
-        z-index: 2;
-
-        background: linear-gradient(
-          to right,
-          hsla(200, 100%, 3%, 27.25%),
-          hsla(200, 100%, 3%, 100%)
-        );
-      }
+      background: linear-gradient(
+        to right,
+        hsla(200, 100%, 3%, 27.25%),
+        hsla(200, 100%, 3%, 100%)
+      );
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1366px) {
     margin-bottom: 4.8rem;
 
     > h1 {
@@ -109,7 +104,14 @@ export const Container = styled.section`
 
       > .swiper-button-prev,
       .swiper-button-next {
+        height: 0.2rem;
+        font-weight: bold;
         z-index: 9999999999999999;
+
+        &::after,
+        &::before {
+          font-size: 2.75rem;
+        }
 
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
@@ -175,7 +177,7 @@ export const Container = styled.section`
                 height: 100%;
                 position: absolute;
                 top: 0;
-                right: 0;
+                right: -0.5px;
                 z-index: 2;
                 background: linear-gradient(
                   to right,
@@ -189,7 +191,7 @@ export const Container = styled.section`
                 height: 100%;
                 position: absolute;
                 top: 0;
-                right: 0;
+                right: -3px;
                 z-index: 2;
                 background: linear-gradient(
                   to right,
@@ -198,10 +200,6 @@ export const Container = styled.section`
                 );
               `}
       }
-    }
-
-    .swiper-wrapper {
-      /* gap: 2.7rem; */
     }
   }
 `

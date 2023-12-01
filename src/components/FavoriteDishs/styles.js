@@ -10,6 +10,7 @@ export const Container = styled.div`
   > img {
     width: 7.2rem;
     height: 7.2rem;
+    border-radius: 50%;
   }
 
   > div {
@@ -24,6 +25,21 @@ export const Container = styled.div`
       border: none;
       color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_400};
     }
+  }
+
+  .skeleton-img {
+    width: 7.2rem;
+    height: 7.2rem;
+  }
+
+  .skeleton-title {
+    width: 15rem;
+    height: 1.6rem;
+  }
+
+  .skeleton-button {
+    width: 12rem;
+    height: 1.6rem;
   }
 
   @media (min-width: 514px) {
