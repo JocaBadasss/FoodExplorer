@@ -4,17 +4,19 @@
 Food Explorer is a digital menu for ordering food! <br/>
 </p>
 
-<p align="center">
-  <a href="#-description">Description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-functionalities">Functionalities</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-folder-structure-and-code-organization">Folder Structure</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#FoodExplorer#%EF%B8%8F-running-the-project-locally">Running The Project Locally</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="-#deploy">Deploy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="-#contribution">Contribution</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="-#contact">Contact</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-license">License</a>
-</p>
+## Table of Contents
+
+- [📋 Description](#-description)
+- [🌟 Features](#-features)
+- [🔧 Functionalities](#-functionalities)
+- [🚀 Technologies](#-technologies)
+- [📂 Folder Structure and Code Organization](#-folder-structure-and-code-organization)
+- [🌐 Deploy](#-deploy)
+- [🏃‍♀️ Running the Project Locally](#-running-the-project-locally)
+- [📸 Screenshots](#-screenshots)
+- [🤝 Contribution](#-contribution)
+- [📧 Contact](#-contact)
+- [📝 License](#-license)
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
@@ -116,6 +118,7 @@ This structure allows for a clear organization of code, making it easier to main
 ## 🌐 Deploy
 
 The project is deployed at [https://foodexplorer-joca.vercel.app/](https://foodexplorer-joca.vercel.app/). To access the project's backend repository, visit [https://github.com/JocaBadasss/FoodExplorer-API](https://github.com/JocaBadasss/FoodExplorer-API).
+
 
 ## 🏃‍♀️ Running the Project Locally
 
