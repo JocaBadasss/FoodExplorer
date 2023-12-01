@@ -157,6 +157,10 @@ For any queries or suggestions, please reach out via email at [joaocarlos1208@ho
 
 This project is licensed under the [MIT License](LICENSE).
 
+## 📸 Screenshots
+
+
+
 ---
 
 This README provides a brief glimpse into the comprehensive functionalities and technical aspects of FoodExplorer. For a more detailed overview, access the application or explore the codebase.
