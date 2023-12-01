@@ -159,7 +159,63 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📸 Screenshots
 
+### Mobile
+<div align="center">
+  <div
+    style="
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      align-items: center;
+    "
+  >
+    <a
+      href="https://i.imgur.com/I4WTtFT.png"
+      target="_blank"
+      style="flex-basis: 20%; max-width: 200px"
+    >
+      <img
+        alt="projeto Food Explorer"
+        src="https://i.imgur.com/I4WTtFT.png"
+        style="width: 20%; height: 20%; max-width: 200px"
+      />
+    </a>
+    <a
+      href="https://i.imgur.com/alWFl5P.png?1"
+      target="_blank"
+      style="flex-basis: 20%; max-width: 200px"
+    >
+      <img
+        src="https://i.imgur.com/alWFl5P.png?1"
+        style="width: 20%; height: 20%; max-width: 200px"
+      />
+    </a>
+    <a
+      href="https://i.imgur.com/0pOZ7QH.png?1"
+      target="_blank"
+      style="flex-basis: 20%; max-width: 200px"
+    >
+      <img
+        src="https://i.imgur.com/0pOZ7QH.png?1"
+        style="width: 20%; height: 20%; max-width: 200px"
+      />
+    </a>
+    <a
+      href="https://i.imgur.com/Vz5S8Iu.png?1"
+      target="_blank"
+      style="flex-basis: 20%; max-width: 200px"
+    >
+      <img
+        src="https://i.imgur.com/Vz5S8Iu.png?1"
+        style="width: 20%; height: 20%; max-width: 200px"
+      />
+    </a>
+  </div>
+</div>
 
+---
+
+### Desktop
 
 ---
 
