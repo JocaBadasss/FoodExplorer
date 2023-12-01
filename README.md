@@ -145,18 +145,6 @@ To perform a payment, use the following test credit card provided by the Mercado
 - Expiration Date: 11/25
 
 
-## 🤝 Contribution
-
-Contributions are welcome! Feel free to open pull requests for enhancements, bug fixes, or new feature additions.
-
-## 📧 Contact
-
-For any queries or suggestions, please reach out via email at [joaocarlos1208@hotmail.com](mailto:joaocarlos1208@hotmail.com).
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## 📸 Screenshots
 
 ### Mobile
@@ -213,9 +201,49 @@ This project is licensed under the [MIT License](LICENSE).
   </div>
 </div>
 
----
+
 
 ### Desktop
+
+<p align="center">
+  <a
+    href="https://i.imgur.com/WLsc5PM.png"
+    target="_blank"
+  >
+    <img
+      alt="projeto Food Explorer"
+      src="https://i.imgur.com/WLsc5PM.png"
+      width="100%"
+    />
+  </a>
+</p>
+<p align="center">
+  <a
+    href="https://i.imgur.com/O4MUEUQ.png"
+    target="_blank"
+  >
+    <img
+      alt="projeto Food Explorer"
+      src="https://i.imgur.com/O4MUEUQ.png"
+      width="100%"
+    />
+  </a>
+</p>
+
+
+## 🤝 Contribution
+
+Contributions are welcome! Feel free to open pull requests for enhancements, bug fixes, or new feature additions.
+
+## 📧 Contact
+
+For any queries or suggestions, please reach out via email at [joaocarlos1208@hotmail.com](mailto:joaocarlos1208@hotmail.com).
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+
 
 ---
 
