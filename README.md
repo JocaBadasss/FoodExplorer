@@ -12,7 +12,7 @@ Food Explorer is a digital menu for ordering food! <br/>
 - [🚀 Technologies](#-technologies)
 - [📂 Folder Structure and Code Organization](#-folder-structure-and-code-organization)
 - [🌐 Deploy](#-deploy)
-- [🏃‍♀️ Running the Project Locally](#running-the-project-locally)
+- [🏃‍♀️ Running the Project Locally](#-running-the-project-locally)
 - [📸 Screenshots](#-screenshots)
 - [🤝 Contribution](#-contribution)
 - [📧 Contact](#-contact)
@@ -120,7 +120,7 @@ This structure allows for a clear organization of code, making it easier to main
 The project is deployed at [https://foodexplorer-joca.vercel.app/](https://foodexplorer-joca.vercel.app/). To access the project's backend repository, visit [https://github.com/JocaBadasss/FoodExplorer-API](https://github.com/JocaBadasss/FoodExplorer-API).
 
 
-## Running the Project Locally
+## 🏃 Running the Project Locally
 
 To run this project locally:
 
